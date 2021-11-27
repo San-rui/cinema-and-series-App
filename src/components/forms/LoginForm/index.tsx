@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { validationSchema } from "./validation-schema";
 import { defaultValues } from "./default-values";
 
-
+import './styles.scss'
 
 type Props = {
     id?: string,

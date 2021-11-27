@@ -8,7 +8,6 @@ const Header:FC = () => {
             header
         </header>
     )
-    
 }
 
 export { Header }
