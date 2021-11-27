@@ -1,0 +1,14 @@
+.login-form{
+    width: 30%;
+    padding: 1rem;
+    background-color: #ffffff10;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-radius: 1rem;
+
+    .container-input{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+}

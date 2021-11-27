@@ -1,12 +1,17 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { LoginForm } from "../../components/forms/LoginForm";
+import { Layout } from "../../components/layout";
+
+import './styles.scss'
 
 const Login :FC= () =>{
 
     return(
-        <>
-        <LoginForm/>
-        </>
+        <Layout hidenHeader>
+            <div className="login">
+                <LoginForm/>
+            </div>
+        </Layout>
     )
     
 }
