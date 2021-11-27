@@ -1,11 +1,14 @@
-import { apiFirebase } from '../utils';
-import { User} from "../types";
-import { mapToArray } from '../helpers';
+import { Item } from '../types';
+import { apiCinema } from '../utils';
 
 
-const getMovies = async (): Promise<User[]>  =>{
-    const response =  await apiFirebase.get('/users.json');
-    return mapToArray(response.data)
+const getMovies = async (): Promise<Item[]> => {
+    const response =  await apiCinema.get('/search/multi?');
+
+    console.log(response.data);
+
+    return response.data
 };
+
 
 export { getMovies }; 
