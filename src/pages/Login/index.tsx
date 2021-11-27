@@ -1,10 +1,11 @@
-import { FC } from "react";
+import React, { FC } from "react";
+import { LoginForm } from "../../components/forms/LoginForm";
 
 const Login :FC= () =>{
 
     return(
         <>
-        Login
+        <LoginForm/>
         </>
     )
     
