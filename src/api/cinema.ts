@@ -3,7 +3,7 @@ import { apiCinema } from '../utils';
 
 
 const getMovies = async (): Promise<Item[]> => {
-    const response =  await apiCinema.get('/search/multi?');
+    const response =  await apiCinema.get('/movie/top_rated?');
 
     console.log(response.data);
 

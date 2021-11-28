@@ -1,5 +1,6 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { signup } from "../../api/firebase";
 
 import { mapToArray } from "../../helpers"
 import { User } from "../../types";
@@ -87,9 +88,18 @@ const useAuth = ()  => {
             //setCurrentUser(undefined)
         };
 
-        const signUp = () => {};
+        const signUp = async(data: Omit<User, 'id'>) => {
+            try {
+                await signup(data);
+                push('/login')
+                
+            } catch (err) {
+                console.log(err);
+                }
+        };
 
-    return { login, loginWithToken, logout, signUp, hasUserLoggedIn  }
+
+    return {  login, loginWithToken, logout, signUp, hasUserLoggedIn  }
 }
 
 export { useAuth }
