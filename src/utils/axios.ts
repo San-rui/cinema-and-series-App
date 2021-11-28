@@ -1,14 +1,15 @@
 import axios from 'axios';
 
 const apiCinema = axios.create({
-    baseURL : process.env.REACT_APP_DB_API,
+    baseURL : 'https://api.themoviedb.org/3/',
     params:{
-        api_key: process.env.REACT_APP_DB_API_KEY
+        api_key: '27aab3b2bf6c01cadfe55264df006e92'
     }
 })
 
 const apiFirebase = axios.create({
-    baseURL: process.env.REACT_APP_DB_FIREBASE
+    baseURL: 'https://cinema-app-bbb17-default-rtdb.firebaseio.com/'
+    //baseURL: process.env.REACT_APP_DB_FIREBASE
 });
 
 export { apiCinema, apiFirebase };

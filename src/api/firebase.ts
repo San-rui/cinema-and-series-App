@@ -8,4 +8,12 @@ const getUsers = async (): Promise<User[]>  =>{
     return mapToArray(response.data)
 };
 
-export { getUsers }; 
+type Payload =Omit<User, 'id'>
+
+const signup = async (data: Payload) =>{
+
+    await apiFirebase.post('/users.json', data);
+}
+
+
+export { signup, getUsers }; 
