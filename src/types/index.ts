@@ -6,6 +6,7 @@ export type User ={
     email: string,
     password:string,
     sessionToken?: string,
+    role: string,
 }
 
 export type Item = {
