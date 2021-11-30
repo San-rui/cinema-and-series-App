@@ -5,9 +5,11 @@ import { store } from './redux/store';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SingUp from './pages/SingUp';
+import UsersPage from './pages/UsersPage';
 
 
 import './scss/styles.scss';
+
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/singup" component={SingUp} />
+          <Route path="/users" component={UsersPage} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>
