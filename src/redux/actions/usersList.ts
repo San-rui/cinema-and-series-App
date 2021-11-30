@@ -3,34 +3,34 @@ import { User } from "../../types";
 import { apiFirebase } from "../../utils/axios"
 import { types } from "../types";
 
-export const processAuth = () =>{
+export const processUsersList = () =>{
 
     return async (dispatch: any) => {
 
-        dispatch(startAuth());
+        dispatch(startUsersList());
 
         try {
             const response = await apiFirebase.get('/users.json');
-            dispatch(okAuth(mapToArray(response.data)));
+            dispatch(okUsersList(mapToArray(response.data)));
         } catch (err) {
-            dispatch(DeniedAuth(err));
+            dispatch(DeniedUsersList(err));
         }
     }
 
 }
 
-const startAuth = () => ({
-    type: types.authInit,
+const startUsersList = () => ({
+    type: types.usersListInit,
     payload: [],
 });
 
-const okAuth = (data: User[]) => ({
-    type: types.authOk,
+const okUsersList = (data: User[]) => ({
+    type: types.usersListhOk,
     payload: data,
 });
 
-const DeniedAuth = (err:any) => ({
-    type: types.authError,
+const DeniedUsersList = (err:any) => ({
+    type: types.usersListError,
     error: {
         message: err,
     },

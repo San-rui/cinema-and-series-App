@@ -1,5 +1,9 @@
 export const types  = {
-    authInit: 'authInit',
-    authOk: 'authOk',
-    authError: 'authError'
+    usersListInit: 'usersListInit',
+    usersListhOk: 'usersListOk',
+    usersListError: 'usersListError',
+
+    userInit: 'userInit',
+    userOk: 'userOk',
+    usersError: 'userError',
 }

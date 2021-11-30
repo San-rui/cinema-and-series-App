@@ -1,28 +1,31 @@
 import { types } from "../types"
 
 const initialState = {
-    data:[],
+    email:'',
+    accessToken:'',
+    password: '',
     loading: false
-
 }
 
 
-export const authReducer = (state=initialState, action: any) =>{
+export const userReducer = (state=initialState, action: any) =>{
     switch(action.type) {
 
-        case types.authInit:
+        case types.userInit:
             return {
                 ...state,
                 loading: true
             }
 
-        case types.authOk:
+        case types.userOk:
             return {
-                data:action.payload,
+                email: action.payload.email,
+                accessToken: action.payload.accessToken,
+                password: action.payload.password,
                 loading: false
             }
 
-        case types.authError:
+        case types.usersError:
             return {
                 data: { errorCode:400 },
                 loading: false
