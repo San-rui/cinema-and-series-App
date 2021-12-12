@@ -35,7 +35,7 @@ const useAuth = ()  => {
     const createUserToken = async (user: User): Promise<string | null> => {
         try {
             const newToken = Math.random().toString(36).substr(2);
-            await apiFirebase.patch(`/users/${user.id}.json`, { sessionToken: newToken });
+            await apiFirebase.patch(`/users/${user.idDB}.json`, { sessionToken: newToken });
             return newToken;
             } catch (err) {
             return null;
@@ -52,10 +52,12 @@ const useAuth = ()  => {
             
                 /* Tarea de backend */
                 const users: User[] = mapToArray(response.data);
+                
             
                 const user = users.find(
                     (user) => user.email === email && user.password === password
                 );
+                console.log(user)
             
                 if (user) {
                     // Definir un token
