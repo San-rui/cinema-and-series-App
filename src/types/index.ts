@@ -1,5 +1,5 @@
 export type User ={
-    id:string,
+    idDB:string,
     name: string,
     lastName: string,
     birthday: string,
