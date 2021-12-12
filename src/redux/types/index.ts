@@ -6,4 +6,8 @@ export const types  = {
     userInit: 'userInit',
     userOk: 'userOk',
     usersError: 'userError',
+
+    cinemaInit: 'cinemaInit',
+    cinemaOk: 'cinemaOk',
+    cinemaError: 'cinemaError',
 }

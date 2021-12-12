@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 
 import { usersListReducer } from './reducers/usersList';
 import { userReducer } from './reducers/user';
+import { cinemaReducer } from './reducers/cinema';
 
 declare global {
     interface Window {
@@ -18,6 +19,7 @@ const composeEnhancers =
 const reducers = combineReducers({
     usersList: usersListReducer,
     user: userReducer,
+    cinema: cinemaReducer,
 })
 
 export const store = createStore(reducers, 

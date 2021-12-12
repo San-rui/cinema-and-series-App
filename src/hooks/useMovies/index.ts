@@ -1,20 +1,28 @@
-import { getMovies } from "../../api/cinema"
-import { Item } from "../../types";
+import { useEffect } from "react";
+import {  useDispatch, useSelector } from "react-redux";
+import { processCinemaList } from "../../redux/actions/cinema";
+import { Item, Store } from "../../types";
+
+type CinemaStore={
+    cinema:{
+        items: Item[],
+        error: {errorCode:string }|null,
+    }
+}
 
 
 const useMovies = () =>{
+    const dispatch = useDispatch()
 
-    const getMoviesApi = async () =>{
-        try {
-            await getMovies();
-            
-        } catch (err) {
-            console.log(err);
-            }
-        
-    }
+    const  { items }  = useSelector((state: CinemaStore) => state.cinema)
+    console.log("data", items)
 
-    return { getMoviesApi }
+    useEffect ( () => {
+        dispatch(processCinemaList())
+
+    },[dispatch])
+
+    return { items }
 
 }
 

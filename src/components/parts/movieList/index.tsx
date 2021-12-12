@@ -1,46 +1,50 @@
-import { FC } from "react";
+import StarRating from "../../../StarRating"
 
-import { useState } from "react";
+import { FC, useEffect, useState  } from "react";
 
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { useMovies } from "../../../hooks";
 import { Item } from "../../../types";
 import { getMovies } from "../../../api/cinema";
-import { useEffect } from "react";
+import { Box, Button, Card, CardMedia, Typography } from "@mui/material";
+
 
 
 const MovieList :FC = () =>{
 
-    const [movies, setMovies] = useState <Item[]>()
-
-    //const { getMoviesApi } = useMovies();
-    useEffect ( () => {
-        if(!movies){
-            getMovies().then(response=>{ setMovies(response)
-                console.log(response)
-            })
-        }
-        
-    }, [movies])
-
-    
-    const showMovies = async() =>{
-        await movies?.map(item=>{
-            return(
-                <div>Hola</div>
-            )
-        })
-    }
+    const { items } = useMovies();
 
     return (
-        <div>
-            {/* {showMovies()} */}
-        </div>
+        <Box sx={{
+            display: 'grid',
+            columnGap: 1,
+            rowGap: 1,
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            width: "80%"
+        }}>
+            {items?.map(item =>{
+        
+                return(
+                    <div id={`${item.id}`}>
+                        <Card sx={{ maxWidth: 307, maxHeight: 620, width: "19vw", height:"80vh", display: 'flex', flexDirection: 'column', justifyContent:"space-between"}} variant="outlined">
+                            <img
+                                src={`http://image.tmdb.org/t/p/w500${item.poster_path}`}
+                                alt={item.original_title}
+                                loading="lazy"
+                            />
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                {item.original_title}
+                            </Typography>
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                {item.vote_average}
+                            </Typography>
+                            <StarRating stars={item.vote_average} />
+                            <Button variant="contained">Eliminar</Button>
+                        </Card>
+                    </div>
+                    
+            )
+            })}
+        </Box>
     )
 }
 
