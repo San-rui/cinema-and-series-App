@@ -1,8 +1,13 @@
 import { types } from "../types"
 
+type UserState ={
+
+}
+
 const initialState = {
     data:[],
-    loading: false
+    loading: false,
+    error: ''
 
 }
 
@@ -24,8 +29,9 @@ export const usersListReducer = (state=initialState, action: any) =>{
 
         case types.usersListError:
             return {
-                data: { errorCode:400 },
-                loading: false
+                ...state,
+                loading: false,
+                error: 'no se ejecuto correctamente'
             }
         
         default :

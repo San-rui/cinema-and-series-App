@@ -3,32 +3,30 @@ import { User } from "../../types";
 import { apiFirebase } from "../../utils/axios"
 import { types } from "../types";
 
-export const processUser = () =>{
+// export const processUser = () =>{
 
-    return async (dispatch: any) => {
+//     return async (dispatch: any) => {
 
-        dispatch(startUser());
+//         dispatch(startUser());
 
-        try {
-            const response = await apiFirebase.get('/users.json');
-            dispatch(okUser(mapToArray(response.data)));
-        } catch (err) {
-            dispatch(DeniedUser(err));
-        }
-    }
-}
+//         dispatch(okUser("aca va el usuario"));
 
-const startUser = () => ({
+//         dispatch(DeniedUser(err));
+
+//     }
+// }
+
+export const startUser = () => ({
     type: types.userInit,
     payload: [],
 });
 
-const okUser = (data: User[]) => ({
+export const okUser = (data: User | undefined) => ({
     type: types.userOk,
     payload: data,
 });
 
-const DeniedUser = (err:any) => ({
+export const DeniedUser = (err:any) => ({
     type: types.usersError,
     error: {
         message: err,

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Layout } from "../../components/layout";
@@ -16,10 +16,13 @@ const UsersPage :FC= () =>{
 
     const dispatch = useDispatch()
 
-    dispatch(processUsersList())
+    const { data } = useSelector((state: Store) => state.usersList)
 
-    // const { data } = useSelector((state: Store) => state.usersList)
-    // console.log(data)
+    useEffect(()=>{
+        dispatch(processUsersList())
+    },[dispatch])
+
+    console.log(data)
 
     return(
         <Layout>
