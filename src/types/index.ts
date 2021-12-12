@@ -26,3 +26,11 @@ export type Item = {
     video?: boolean;
     vote_average: number;
 };
+
+export type Store<T> = {
+    [name: string]: {
+        loading?: boolean;
+        items?: T[];
+        error?: string;
+    };
+};
