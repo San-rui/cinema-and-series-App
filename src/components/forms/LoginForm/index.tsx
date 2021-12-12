@@ -5,14 +5,13 @@ import { validationSchema } from "./validation-schema";
 import { defaultValues } from "./default-values";
 
 import './styles.scss'
+import { useAuth } from "../../../hooks/useAuth";
+import { useHistory } from "react-router-dom";
 
+const LoginForm: FC = () => {
 
-type Props = {
-    id?: string,
-    className?: string
-};
-
-const LoginForm: FC <Props> = ({ id, className}) => {
+    const { login } = useAuth();
+    const { push } = useHistory();
 
     const { register, 
         formState: { errors },
@@ -22,12 +21,13 @@ const LoginForm: FC <Props> = ({ id, className}) => {
         defaultValues,
     })
 
-    const onSubmit = async() => {
-        // try {
-        //     await
-        // } catch (e) {
-        
-        // }
+    const onSubmit = async(data:{email:string; password: string}) => {
+        try {
+            await login(data.email, data.password)
+            push('/')
+        } catch (e) {
+            console.log("error")
+        }
 
     }
 

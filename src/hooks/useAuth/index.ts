@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../../api/firebase";
 
@@ -6,8 +7,21 @@ import { mapToArray } from "../../helpers"
 import { User } from "../../types";
 import { apiFirebase} from "../../utils";
 
+import { store } from "../../redux/store"
+import { okUser } from "../../redux/actions/user";
+
+type Store={
+    user:{ 
+        data: User
+    }
+}
+
 const useAuth = ()  => {
-    //const { setCurrentUser } = useContext(AuthContext);
+    
+    const dispatch = useDispatch();
+    const { data } = useSelector((state: Store) => state.user)
+
+
     const [ tokenStorage, setTokenStorage] = useState <string | undefined>(
         localStorage.getItem('user-token') || undefined)
 
@@ -50,6 +64,12 @@ const useAuth = ()  => {
                     if (token) {
                     setTokenStorage(token)
                     //setCurrentUser(user);
+                    dispatch(okUser(user))
+                    
+                    }else{
+                        //esto lo agregue con ceci
+                        setHasUserLoggedIn(false)
+
                     }
                 } else {
                     throw new Error("El usuario no existe");
@@ -59,6 +79,7 @@ const useAuth = ()  => {
                 console.log(e);
                 }
         };
+
         const loginWithToken = async () => {
             let user;
             try {
@@ -72,7 +93,7 @@ const useAuth = ()  => {
                 }
             
                 if (user) {
-                    //setCurrentUser(user);
+                    dispatch(okUser(user))
                     setHasUserLoggedIn(true);
                 } else {
                     setHasUserLoggedIn(false);
@@ -86,6 +107,7 @@ const useAuth = ()  => {
             localStorage.removeItem('user-token')
             push('/login')
             //setCurrentUser(undefined)
+            dispatch(okUser(undefined))
         };
 
         const signUp = async(data: Omit<User, 'id'>) => {
@@ -97,7 +119,6 @@ const useAuth = ()  => {
                 console.log(err);
                 }
         };
-
 
     return {  login, loginWithToken, logout, signUp, hasUserLoggedIn  }
 }

@@ -2,8 +2,7 @@ import { types } from "../types"
 
 const initialState = {
     email:'',
-    accessToken:'',
-    password: '',
+    sessionToken:'',
     loading: false
 }
 
@@ -20,8 +19,7 @@ export const userReducer = (state=initialState, action: any) =>{
         case types.userOk:
             return {
                 email: action.payload.email,
-                accessToken: action.payload.accessToken,
-                password: action.payload.password,
+                sessionToken: action.payload.accessToken,
                 loading: false
             }
 
