@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose  } from 'redux';
 import thunk from 'redux-thunk'
 
-import { usersListReducer } from './reducers/usersList';
+import { usersReducer } from './reducers/usersList';
 import { userReducer } from './reducers/user';
 import { cinemaReducer } from './reducers/cinema';
 
@@ -17,7 +17,7 @@ const composeEnhancers =
     compose;
 
 const reducers = combineReducers({
-    usersList: usersListReducer,
+    users: usersReducer,
     user: userReducer,
     cinema: cinemaReducer,
 })

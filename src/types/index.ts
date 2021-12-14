@@ -34,3 +34,5 @@ export type Store<T> = {
         error?: string;
     };
 };
+
+export type AddUserType = Omit<User, 'id'>;
