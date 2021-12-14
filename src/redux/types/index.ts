@@ -10,4 +10,8 @@ export const types  = {
     cinemaInit: 'cinemaInit',
     cinemaOk: 'cinemaOk',
     cinemaError: 'cinemaError',
+
+    addUserstart: 'addUserstart',
+    addUserSuccess:'addUserSuccess',
+    addUserError:'addUserError',
 }
