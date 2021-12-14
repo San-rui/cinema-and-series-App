@@ -10,7 +10,6 @@ const Home :FC= () =>{
     return(
         <Layout>
             <div className="home">
-                ESTOY EN LA HOME
                 <MovieList/>
             </div>
         </Layout>
