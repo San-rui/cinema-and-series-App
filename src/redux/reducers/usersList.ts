@@ -1,41 +1,40 @@
+import { User } from "../../types"
 import { types } from "../types"
 
-type UserState ={
-
+type UserState = {
+    loading: boolean,
+    items: User[]
+    error: string
 }
 
-const initialState = {
-    data:[],
+const intialState: UserState = {
     loading: false,
+    items: [],
     error: ''
-
 }
 
+export const usersReducer = (state = intialState, action: any) => {
 
-export const usersListReducer = (state=initialState, action: any) =>{
     switch(action.type) {
-
-        case types.usersListInit:
+        case types.addUserstart :
             return {
                 ...state,
-                loading: true
+                loading: true,
             }
-
-        case types.usersListhOk:
+        case types.addUserSuccess:
             return {
-                data: action.payload,
+                ...state,
+                items: action.payload,//aca debería estar cargado,
                 loading: false
             }
-
-        case types.usersListError:
+        case types.addUserError :
             return {
                 ...state,
                 loading: false,
-                error: 'no se ejecuto correctamente'
+                error: "No se pudo obtener usuarios"
             }
-        
-        default :
-            return state
+
+        default : return state
     }
 
 }

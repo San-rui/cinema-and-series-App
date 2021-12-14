@@ -1,5 +1,5 @@
 import { mapToArray } from "../../helpers";
-import { User } from "../../types";
+import { AddUserType, User } from "../../types";
 import { apiFirebase } from "../../utils/axios"
 import { types } from "../types";
 
@@ -19,6 +19,8 @@ export const processUsersList = () =>{
 
 }
 
+
+
 const startUsersList = () => ({
     type: types.usersListInit,
     payload: [],
@@ -35,3 +37,47 @@ const DeniedUsersList = (err:any) => ({
         message: err,
     },
 })
+
+//---------NUEVO-------
+
+export const getUsersAction = () => {
+    return async (dispatch: any) => {
+        dispatch(getUsersStart());
+
+        try {
+            const response = await apiFirebase.get("/users.json");
+            dispatch(getUsersSuccess(mapToArray(response.data)));
+        } catch (err) {
+        dispatch(getUsersError(err));
+        }
+    };
+};
+
+export const addUserAction = (user: AddUserType) => {
+    return async (dispatch: any) => {
+        dispatch(getUsersStart());
+
+        try {
+        await apiFirebase.post("/users.json", user);
+        } catch (err) {
+            dispatch(getUsersError(err));
+        }
+    };
+};
+
+const getUsersStart = () => ({
+    type: types.addUserstart,
+    payload: [],
+});
+
+const getUsersSuccess = (data: User[]) => ({
+    type: types.addUserSuccess,
+    payload: mapToArray(data),
+});
+
+const getUsersError = (err: any) => ({
+    type: types.addUserError,
+    payload: err.toString(),
+});
+
+
