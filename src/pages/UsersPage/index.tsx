@@ -22,7 +22,6 @@ const UsersPage :FC= () =>{
         dispatch(processUsersList())
     },[dispatch])
 
-    console.log(data)
 
     return(
         <Layout>

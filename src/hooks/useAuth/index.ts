@@ -7,20 +7,17 @@ import { mapToArray } from "../../helpers"
 import { User } from "../../types";
 import { apiFirebase} from "../../utils";
 
-import { store } from "../../redux/store"
-import { okUser } from "../../redux/actions/user";
+import { okUser, processUser } from "../../redux/actions/user";
 
 type Store={
     user:{ 
-        data: User
+        currentUser: User
     }
 }
 
 const useAuth = ()  => {
     
     const dispatch = useDispatch();
-    const { data } = useSelector((state: Store) => state.user)
-
 
     const [ tokenStorage, setTokenStorage] = useState <string | undefined>(
         localStorage.getItem('user-token') || undefined)
@@ -50,7 +47,7 @@ const useAuth = ()  => {
             try {
                 const response = await apiFirebase.get("/users.json");
             
-                /* Tarea de backend */
+                
                 const users: User[] = mapToArray(response.data);
                 
             
@@ -60,23 +57,21 @@ const useAuth = ()  => {
                 console.log(user)
             
                 if (user) {
-                    // Definir un token
+                    
                     const token = await createUserToken(user);
             
                     if (token) {
                     setTokenStorage(token)
-                    //setCurrentUser(user);
-                    dispatch(okUser(user))
+                    dispatch(processUser(user))
                     
                     }else{
-                        //esto lo agregue con ceci
                         setHasUserLoggedIn(false)
 
                     }
                 } else {
                     throw new Error("El usuario no existe");
                 }
-                /* / Tarea de backend */
+
                 } catch (e) {
                 console.log(e);
                 }
@@ -86,8 +81,7 @@ const useAuth = ()  => {
             let user;
             try {
                 const response = await apiFirebase.get("/users.json");
-            
-                /* Tarea de backend */
+
                 const users: User[] = mapToArray(response.data);
             
                 if (tokenStorage) {
@@ -95,7 +89,7 @@ const useAuth = ()  => {
                 }
             
                 if (user) {
-                    dispatch(okUser(user))
+                    dispatch(processUser(user))
                     setHasUserLoggedIn(true);
                 } else {
                     setHasUserLoggedIn(false);
@@ -108,7 +102,6 @@ const useAuth = ()  => {
         const logout = () => {
             localStorage.removeItem('user-token')
             push('/login')
-            //setCurrentUser(undefined)
             dispatch(okUser(undefined))
         };
 
@@ -122,7 +115,7 @@ const useAuth = ()  => {
                 }
         };
 
-    return {  login, loginWithToken, logout, signUp, hasUserLoggedIn  }
+    return {  login, loginWithToken, logout, signUp, hasUserLoggedIn }
 }
 
 export { useAuth }

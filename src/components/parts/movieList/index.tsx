@@ -1,12 +1,9 @@
+import { FC } from "react";
+
 import StarRating from "../../../StarRating"
 
-import { FC, useEffect, useState  } from "react";
-
 import { useMovies } from "../../../hooks";
-import { Item } from "../../../types";
-import { getMovies } from "../../../api/cinema";
-import { Box, Button, Card, CardMedia, Typography } from "@mui/material";
-
+import { Box, Button, Card, Typography } from "@mui/material";
 
 
 const MovieList :FC = () =>{

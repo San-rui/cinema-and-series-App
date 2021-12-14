@@ -1,11 +1,13 @@
 import { FC } from "react";
+import { NavBar } from "../../parts";
 
+import './styles.scss'
 
 const Header:FC = () => {
     
     return (
-        <header >
-            header
+        <header className="header">
+            <NavBar/>
         </header>
     )
 }

@@ -3,18 +3,19 @@ import { User } from "../../types";
 import { apiFirebase } from "../../utils/axios"
 import { types } from "../types";
 
-// export const processUser = () =>{
+export const processUser = (user: User) =>{
 
-//     return async (dispatch: any) => {
+    return async (dispatch: any) => {
 
-//         dispatch(startUser());
+        dispatch(startUser());
+        try {
+            dispatch(okUser(user));
+        } catch (err) {
+            dispatch(DeniedUser(err));
+        }
 
-//         dispatch(okUser("aca va el usuario"));
-
-//         dispatch(DeniedUser(err));
-
-//     }
-// }
+    }
+}
 
 export const startUser = () => ({
     type: types.userInit,

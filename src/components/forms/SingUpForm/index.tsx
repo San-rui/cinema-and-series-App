@@ -27,7 +27,6 @@ const SingupForm: FC <Props> = ({ id, className}) => {
 
     const onSubmit = async(data: Omit<User, 'id'>) => {
         try {
-            console.log(data)
             await signUp(data)
         } catch (e) {
 

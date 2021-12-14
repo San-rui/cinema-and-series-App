@@ -15,7 +15,6 @@ const useMovies = () =>{
     const dispatch = useDispatch()
 
     const  { items }  = useSelector((state: CinemaStore) => state.cinema)
-    console.log("data", items)
 
     useEffect ( () => {
         dispatch(processCinemaList())
