@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { processCinemaList } from "../../redux/actions/cinema";
 import { Item, Store } from "../../types";
@@ -12,16 +12,17 @@ type CinemaStore={
 
 
 const useMovies = () =>{
+    const [page, setPage]= useState(1)
     const dispatch = useDispatch()
 
     const  { items }  = useSelector((state: CinemaStore) => state.cinema)
 
     useEffect ( () => {
-        dispatch(processCinemaList())
+        dispatch(processCinemaList(page))
 
-    },[dispatch])
+    },[dispatch, page])
 
-    return { items }
+    return { items, page, setPage }
 
 }
 

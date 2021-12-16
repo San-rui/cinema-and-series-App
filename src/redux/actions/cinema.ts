@@ -3,15 +3,16 @@ import { Item } from "../../types";
 import { apiCinema } from "../../utils/axios"
 import { types } from "../types";
 
-export const processCinemaList = () =>{
+export const processCinemaList = (pageNumber:number) =>{
 
     return async (dispatch: any) => {
 
         dispatch(startCinemaList());
 
         try {
-            const response = await apiCinema.get("/movie/top_rated");
+            const response = await apiCinema.get(`/movie/top_rated?page=${pageNumber}`);
             dispatch(okCinemaList(response.data.results));
+            console.log(response.data)
         } catch (err) {
             dispatch(deniedCinemaList(err));
         }
