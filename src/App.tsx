@@ -6,17 +6,16 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SingUp from './pages/SingUp';
 import UsersPage from './pages/UsersPage';
-
+import Admin from './pages/Admin';
 
 import './scss/styles.scss';
-
-
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
+          <Route path="/admin" component={Admin} />
           <Route path="/login" component={Login} />
           <Route path="/singup" component={SingUp} />
           <Route path="/users" component={UsersPage} />

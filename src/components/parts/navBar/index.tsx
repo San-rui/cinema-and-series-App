@@ -1,13 +1,10 @@
 import { FC } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
 
-
 const NavBar :FC = () =>{
 
-
-  
-  return (
-    <nav className="navbar navbar-light navbar-expand-lg navbar-background sticky-top text-dark justify-content-between">
+    return (
+        <nav className="navbar navbar-light navbar-expand-lg navbar-background sticky-top text-dark justify-content-between">
             <div className="container-fluid">
                 <a className="navbar-brand d-flex sticky-top" href="/">
                     <h1 className="fs-1 d-flex align-items-end m-0 text-dark">Cinema</h1> 
@@ -27,7 +24,7 @@ const NavBar :FC = () =>{
                 </div>
             </div>
         </nav>
-  );
+    );
 }
 
 export { NavBar }
