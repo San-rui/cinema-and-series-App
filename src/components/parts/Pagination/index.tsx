@@ -1,5 +1,5 @@
 import React, { Dispatch, FC, SetStateAction } from 'react'
-import Pagination from '@material-ui/lab/Pagination'
+import  Pagination  from '@material-ui/lab/Pagination'
 
 import './styles.scss'
 
