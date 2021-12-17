@@ -21,7 +21,7 @@ const PaginationComponent: FC <Props> = ({setPage, page}) => {
                 onChange={handleChange}
                 count={page} 
                 variant="outlined" 
-                color="secondary"
+                color="primary"
             />
         </div>
     )

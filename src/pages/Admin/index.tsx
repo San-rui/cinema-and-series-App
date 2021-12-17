@@ -20,7 +20,7 @@ const Admin :FC= () =>{
 
     return(
         <Layout>
-            <div className="home">
+            <div className="admin">
                 <Paper
                     component="form"
                     sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '2.5rem', marginBottom: '1rem', borderRadius: '1.2rem' }}
