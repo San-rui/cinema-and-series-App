@@ -36,3 +36,15 @@ export type Store<T> = {
 };
 
 export type AddUserType = Omit<User, 'id'>;
+
+export type UsersStore={
+    loading: boolean,
+    users: User[],
+    error: string
+}
+
+export  type UserStore={
+    sessionToken:string,
+    email: string,
+
+}

@@ -4,20 +4,23 @@ import { useHistory } from "react-router-dom";
 import { signup } from "../../api/firebase";
 
 import { mapToArray } from "../../helpers"
-import { User } from "../../types";
+import { User, UserStore } from "../../types";
 import { apiFirebase} from "../../utils";
 
 import { okUser, processUser } from "../../redux/actions/user";
+import { useUsers } from "..";
 
 type Store={
-    user:{ 
-        currentUser: User
-    }
+    user:UserStore
 }
 
 const useAuth = ()  => {
     
     const dispatch = useDispatch();
+
+    const userLogged =useSelector((store:Store)=>store.user)
+
+    const {users} =useUsers() 
 
     const [ tokenStorage, setTokenStorage] = useState <string | undefined>(
         localStorage.getItem('user-token') || undefined)
@@ -37,55 +40,47 @@ const useAuth = ()  => {
             } catch (err) {
             return null;
             }
-        };
+    };
 
-        useEffect ( () => {
-            if(tokenStorage) localStorage.setItem('user-token', tokenStorage)
-        },[tokenStorage])
+    useEffect ( () => {
+        if(tokenStorage) localStorage.setItem('user-token', tokenStorage)
+    },[tokenStorage])
 
-        const login = async (email: string, password: string) => {
-            try {
-                const response = await apiFirebase.get("/users.json");
+    const login = async (email: string, password: string) => {
+        try {
             
+            const user = users.items?.find(
+                (user) => user.email === email && user.password === password
+            );
+            console.log(user)
+        
+            if (user) {
                 
-                const users: User[] = mapToArray(response.data);
+                const token = await createUserToken(user);
+        
+                if (token) {
+                setTokenStorage(token)
+                dispatch(processUser({...user, sessionToken: token}))
                 
-            
-                const user = users.find(
-                    (user) => user.email === email && user.password === password
-                );
-                console.log(user)
-            
-                if (user) {
-                    
-                    const token = await createUserToken(user);
-            
-                    if (token) {
-                    setTokenStorage(token)
-                    dispatch(processUser(user))
-                    
-                    }else{
-                        setHasUserLoggedIn(false)
+                }else{
+                    setHasUserLoggedIn(false)
 
-                    }
-                } else {
-                    throw new Error("El usuario no existe");
                 }
+            } else {
+                throw new Error("El usuario no existe");
+            }
 
-                } catch (e) {
-                console.log(e);
-                }
-        };
+            } catch (e) {
+            console.log(e);
+            }
+    };
 
         const loginWithToken = async () => {
             let user;
             try {
-                const response = await apiFirebase.get("/users.json");
 
-                const users: User[] = mapToArray(response.data);
-            
                 if (tokenStorage) {
-                    user = users.find((user) => user.sessionToken === tokenStorage);
+                    user = users.items?.find((user) => user.sessionToken === tokenStorage);
                 }
             
                 if (user) {
@@ -115,7 +110,7 @@ const useAuth = ()  => {
                 }
         };
 
-    return {  login, loginWithToken, logout, signUp, hasUserLoggedIn }
+    return { isUserLogged: !!userLogged.sessionToken,  login, loginWithToken, logout, signUp, hasUserLoggedIn }
 }
 
 export { useAuth }

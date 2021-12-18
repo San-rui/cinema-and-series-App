@@ -45,6 +45,7 @@ export const getUsersAction = () => {
 
         try {
             const response = await apiFirebase.get("/users.json");
+        
             dispatch(getUsersSuccess(mapToArray(response.data)));
         } catch (err) {
         dispatch(getUsersError(err));
@@ -71,7 +72,7 @@ const getUsersStart = () => ({
 
 const getUsersSuccess = (data: User[]) => ({
     type: types.addUserSuccess,
-    payload: mapToArray(data),
+    payload: data,
 });
 
 const getUsersError = (err: any) => ({
