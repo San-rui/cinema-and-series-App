@@ -33,7 +33,7 @@ const useUsers = () => {
 
     };
 
-    return { users, addUser, getUsers, getUser };
+    return { users, addUser, getUser };
 
 }
 
