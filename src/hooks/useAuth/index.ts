@@ -110,7 +110,7 @@ const useAuth = ()  => {
                 }
         };
 
-    return { isUserLogged: !!userLogged.sessionToken,  login, loginWithToken, logout, signUp, hasUserLoggedIn }
+    return { isUserLogged: !!(localStorage.getItem('user-token')),  login, loginWithToken, logout, signUp, hasUserLoggedIn }
 }
 
 export { useAuth }
