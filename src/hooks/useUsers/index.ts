@@ -4,12 +4,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { addUserAction, getUsersAction } from "../../redux/actions/usersList";
 import { AddUserType, Store, User } from "../../types"
 
-type UsersStore ={
-    Users:{
-        
-    }
-}
-
 const useUsers = () => {
 
     const dispatch = useDispatch()

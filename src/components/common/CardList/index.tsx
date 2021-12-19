@@ -7,15 +7,7 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import { purple } from '@mui/material/colors';
 
 import { Item } from "../../../types";
-
-const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: purple[500],
-    '&:hover': {
-        backgroundColor: purple[700],
-    },
-}));
-
+import { ButtonToggle } from "../index"
 
 type Props={
     items:Item[], 
@@ -49,7 +41,7 @@ const CardList :FC<Props> = ({items}) =>{
                                     {item.vote_average}
                                 </Typography>
                                 <StarRating stars={item.vote_average} />
-                                <ColorButton sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", borderRadius:'1rem', backgroundColor:'red' }} variant="contained">Agregar</ColorButton>
+                                <ButtonToggle/>
                             </Card>
                         </div>
                     )

@@ -16,6 +16,9 @@ export const userReducer = (state=initialState, action: any) =>{
         case types.userOk:
             return {
                 email: action.payload.email,
+                role: action.payload.role,
+                name: action.payload.name,
+                id: action.payload.idDB,
                 sessionToken: action.payload.sessionToken,
             }
 
