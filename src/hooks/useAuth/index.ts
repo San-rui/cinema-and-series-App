@@ -1,26 +1,20 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../../api/firebase";
 
-import { mapToArray } from "../../helpers"
-import { User, UserStore } from "../../types";
+import { User } from "../../types";
 import { apiFirebase} from "../../utils";
 
 import { okUser, processUser } from "../../redux/actions/user";
 import { useUsers } from "..";
 
-type Store={
-    user:UserStore
-}
 
 const useAuth = ()  => {
     
     const dispatch = useDispatch();
 
-    const userLogged =useSelector((store:Store)=>store.user)
-
-    const {users} =useUsers() 
+    const { users } =useUsers() 
 
     const [ tokenStorage, setTokenStorage] = useState <string | undefined>(
         localStorage.getItem('user-token') || undefined)
@@ -36,6 +30,7 @@ const useAuth = ()  => {
         try {
             const newToken = Math.random().toString(36).substr(2);
             await apiFirebase.patch(`/users/${user.idDB}.json`, { sessionToken: newToken });
+            localStorage.setItem('role', user.role)
             return newToken;
             } catch (err) {
             return null;

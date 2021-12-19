@@ -17,7 +17,6 @@ const StarRating:FC <Props>  = ({ stars } ) =>{
         };
     };
 
-
     return (
         <div className="stars-gray">
             <div className="stars-yellow" style={StarStyles()}></div>

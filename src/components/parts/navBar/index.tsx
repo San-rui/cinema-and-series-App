@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { Link} from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -7,15 +8,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { Link} from 'react-router-dom';
-
 import './styles.scss'
 
 const NavBar :FC = () =>{
 
     const [open, setOpen] = useState('none');
     const [display, setDisplay] = useState('flex');
-
+    
+    const role=  localStorage.getItem('role')
 
     return (
         <>
@@ -25,7 +25,7 @@ const NavBar :FC = () =>{
                     <Link to='./' className='link-nav'>Home</Link>
                     <Link to='./movies' className='link-nav'>Movies</Link>
                     <Link to='./series' className='link-nav'>Series</Link>
-                    <Link to='./admin' className='link-nav'>Admin</Link>
+                    {(role==='admin')&& <Link to='./admin' className='link-nav'>Admin</Link>}
                     <Link to='./users' className='link-nav'>Users</Link>
                     <Button>Exit</Button>
                 </Box>

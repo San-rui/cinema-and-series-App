@@ -12,7 +12,6 @@ export const processCinemaList = (pageNumber:number) =>{
         try {
             const response = await apiCinema.get(`/movie/top_rated?page=${pageNumber}`);
             dispatch(okCinemaList(response.data.results));
-            console.log(response.data)
         } catch (err) {
             dispatch(deniedCinemaList(err));
         }

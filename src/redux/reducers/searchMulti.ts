@@ -1,29 +1,35 @@
-import { CinemaState, CinemaReducer } from "../../types";
+import { CinemaReducer, Item } from "../../types";
 import { types } from "../types";
 
-const intialState: CinemaState = {
+type SearchState = {
+    loading: boolean,
+    itemsSearch: Item[]
+    error: string
+}
+
+const intialState: SearchState = {
     loading: false,
-    items: [],
+    itemsSearch: [],
     error: ''
 }
 
-export const cinemaReducer = (state = intialState, action: CinemaReducer) => {
+export const searchMultiReducer = (state = intialState, action: CinemaReducer) => {
 
     switch(action.type) {
-        case types.cinemaInit :
+        case types.searchInit :
             return {
                 ...state,
                 loading: true,
             }
-            
-        case types.cinemaOk :
+
+        case types.searchOk :
             return {
                 ...state,
-                items: action.payload,
+                itemsSearch: action.payload,
                 loading: false
             }
             
-        case types.cinemaError :
+        case types.searchError :
             return {
                 ...state,
                 loading: false,
@@ -34,4 +40,3 @@ export const cinemaReducer = (state = intialState, action: CinemaReducer) => {
     }
 
 }
-
