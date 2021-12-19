@@ -18,4 +18,8 @@ export const types  = {
     addUserstart: 'addUserstart',
     addUserSuccess:'addUserSuccess',
     addUserError:'addUserError',
+
+    addItemstart: 'addItemstart',
+    addItemSuccess:'addItemSuccess',
+    addItemError:'addItemError',
 }

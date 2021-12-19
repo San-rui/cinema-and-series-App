@@ -40,7 +40,7 @@ const CardList :FC<Props> = ({items}) =>{
                                     {item.vote_average}
                                 </Typography>
                                 <StarRating stars={item.vote_average} />
-                                <ButtonToggle/>
+                                <ButtonToggle item={item}/>
                             </Card>
                         </div>
                     )
