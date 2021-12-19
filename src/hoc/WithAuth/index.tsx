@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks';
 import { Loading } from '../../components/Loading';
 
-
 const publicRoutes = ["/login", "/sign-up"];
 
 type withAuthenticationFn = (Component: FC) => FC;

@@ -1,10 +1,7 @@
 import { FC } from "react";
 
-import StarRating from "../../../StarRating"
+import StarRating from "../StarRating"
 import { Box, Card, Typography } from "@mui/material";
-import { styled } from '@mui/material/styles';
-import Button, { ButtonProps } from '@mui/material/Button';
-import { purple } from '@mui/material/colors';
 
 import { Item } from "../../../types";
 import { ButtonToggle } from "../index"
@@ -25,12 +22,14 @@ const CardList :FC<Props> = ({items}) =>{
                 width: "100%"
             }}>
                 {items?.map(item =>{
+
+                    const srcImage = (!item.poster_path)? "https://cdn4.vectorstock.com/i/1000x1000/39/98/error-404-page-not-found-vector-14463998.jpg": `http://image.tmdb.org/t/p/w500${item.poster_path}`
             
                     return(
                         <div id={`${item.id}`}>
                             <Card sx={{ maxWidth: 307, maxHeight: 620, width: "19vw", height:"33rem", display: 'flex', flexDirection: 'column', justifyContent:"space-between", padding: "1rem", borderRadius: '1rem', backgroundColor:'#ffffff10', backdropFilter: 'blur(12px)'}} variant="outlined">
                                 <img
-                                    src={`http://image.tmdb.org/t/p/w500${item.poster_path}`}
+                                    src={srcImage}
                                     alt={item.original_title}
                                     loading="lazy"
                                 />

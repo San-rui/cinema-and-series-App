@@ -25,6 +25,7 @@ export type Item = {
     vote_count?: number;
     video?: boolean;
     vote_average: number;
+    media_type?:string
 };
 
 export type Store<T> = {
@@ -44,7 +45,20 @@ export type UsersStore={
 }
 
 export  type UserStore={
-    sessionToken:string,
     email: string,
+    role: string,
+    name: string,
+    id: string,
+    sessionToken: string,
+}
 
+export type CinemaState = {
+    loading: boolean,
+    items: Item[]
+    error: string
+}
+
+export type CinemaReducer = {
+    type: string,
+    payload: Item[]
 }

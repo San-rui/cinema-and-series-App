@@ -11,6 +11,10 @@ export const types  = {
     cinemaOk: 'cinemaOk',
     cinemaError: 'cinemaError',
 
+    searchInit: 'searchInit',
+    searchOk: 'searchOk',
+    searchError: 'searchError',
+
     addUserstart: 'addUserstart',
     addUserSuccess:'addUserSuccess',
     addUserError:'addUserError',
