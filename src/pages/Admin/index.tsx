@@ -1,4 +1,5 @@
 import { FC} from "react";
+
 import { Layout } from "../../components/layout";
 import { MovieList} from "../../components/parts"
 import { WithAuth } from "../../hoc/WithAuth";
@@ -17,7 +18,6 @@ const Admin :FC= () =>{
     const handleChange =(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>)=>{
         
         setSearch(event.target.value)
-        
     }
 
     return(
@@ -38,12 +38,11 @@ const Admin :FC= () =>{
                     </IconButton>
                     <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                 </Paper>
-                <MovieList items={items} setPage={setPage}/>
+                <MovieList items={items.results} setPage={setPage} pageNumber={items.total_pages}/>
                 
             </div>
         </Layout>
     )
-    
 }
 
 export default WithAuth (Admin)

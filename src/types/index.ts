@@ -62,3 +62,11 @@ export type CinemaReducer = {
     type: string,
     payload: Item[]
 }
+
+export type TotalResults ={
+    page?: number, 
+    results: Item[],
+    total_pages: number,
+    total_results:number,
+
+}
