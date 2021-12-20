@@ -1,6 +1,4 @@
-import { mapToArray } from "../../helpers";
 import { User } from "../../types";
-import { apiFirebase } from "../../utils/axios"
 import { types } from "../types";
 
 export const processUser = (user: User) =>{

@@ -47,7 +47,6 @@ const useAuth = ()  => {
             const user = users.items?.find(
                 (user) => user.email === email && user.password === password
             );
-            console.log(user)
         
             if (user) {
                 

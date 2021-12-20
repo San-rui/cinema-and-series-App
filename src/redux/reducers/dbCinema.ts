@@ -1,27 +1,36 @@
+import { Item } from "../../types"
 import { types } from "../types"
 
-const initialState = {}
+const initialState = {
+    items: [],
+    loading: false,
+    error: '' 
+}
 
-export const CinemaFbReducer = (state=initialState, action: any) =>{
+type movieListReducer = {
+    type: string ,
+    payload: Item[],
+}
+
+export const CinemaFbReducer = (state=initialState, action: movieListReducer) =>{
     switch(action.type) {
 
-        case types.addItemstart:
+        case types.movieListItemstart:
             return {
                 ...state,
+                loading: true,
             }
 
-        case types.addItemSuccess:
+        case types.movieListItemSuccess:
             return {
-                email: action.payload.email,
-                role: action.payload.role,
-                name: action.payload.name,
-                id: action.payload.idDB,
-                sessionToken: action.payload.sessionToken,
+                items: action.payload, 
+                loading: false, 
             }
 
-        case types.addItemError:
+        case types.movieListItemError:
             return {
-                data: { errorCode:400 },
+                error: { errorCode:400 },
+                loading: false,
             }
         
         default :

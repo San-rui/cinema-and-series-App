@@ -7,6 +7,7 @@ import './styles.scss'
 import { Item } from "../../../types";
 import { useDispatch } from "react-redux";
 import { AddItemMovieAction } from "../../../redux/actions/dbCinema";
+import { useMovies } from "../../../hooks";
 
 type Props={
     item:Item, 
@@ -14,17 +15,33 @@ type Props={
 
 const ButtonToggle :FC<Props> = ({item}) => {
 
-    const [selected, setSelected] = useState(false);
+    const {deleteItem, dataMovieFb } = useMovies()
 
+    const itemToDelete=dataMovieFb.items?.find(element => element.id=== item.id)
+
+    const value = itemToDelete? true : false
+
+    const [selected, setSelected] = useState<boolean>(value);
+    console.log(selected)
     const dispatch = useDispatch()
 
     useEffect(() => {
 
         if(selected===true){
-            dispatch(AddItemMovieAction(item))
+            
+            if(!itemToDelete){
+                dispatch(AddItemMovieAction(item))
+            }
+            
+        } else if(selected===false){
+
+            if(itemToDelete){
+                deleteItem(itemToDelete.idDB)
+            }
         } 
-        
+
     }, [selected])
+
     
     return(
 
@@ -33,11 +50,11 @@ const ButtonToggle :FC<Props> = ({item}) => {
             selected={selected}
             onChange={() => {
                 setSelected(!selected);
-                
+                console.log(selected)
             }}
             >
-            {selected? <DeleteOutlineIcon/>: <AddIcon  />}
-            {selected? 'DELETE':'ADD'}
+            {itemToDelete? <DeleteOutlineIcon/>: <AddIcon  />}
+            {itemToDelete? 'DELETE':'ADD'}
         </ToggleButton>
     )
 }
