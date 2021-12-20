@@ -7,14 +7,15 @@ import { CardList } from "../../common";
 type Props={
     items:Item[], 
     setPage: Dispatch<SetStateAction<number>>,
+    pageNumber: number,
 }
 
-const MovieList :FC<Props> = ({items, setPage}) =>{
+const MovieList :FC<Props> = ({items, setPage, pageNumber}) =>{
 
     return (
         <>
             <CardList items={items}/>
-            <PaginationComponent setPage={setPage} page={472}/>
+            <PaginationComponent setPage={setPage} page={pageNumber}/>
         </>
     )
 }

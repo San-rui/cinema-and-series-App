@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { processCinemaList } from "../../redux/actions/cinema";
 import { deleteMovieListItem, getMovieAction } from "../../redux/actions/dbCinema";
-import { Item, Store} from "../../types";
+import { Item, Store, TotalResults} from "../../types";
 
 type CinemaStore={
     cinema:{
-        items: Item[],
+        items: TotalResults,
         error: {errorCode:string }|null,
     }
 }
