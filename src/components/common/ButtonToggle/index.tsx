@@ -30,7 +30,9 @@ const ButtonToggle :FC<Props> = ({item}) => {
         if(selected===true){
             
             if(!itemToDelete){
-                dispatch(AddItemMovieAction(item))
+                const data= (item.media_type)?item : {...item, media_type: 'movie'}
+
+                dispatch(AddItemMovieAction(data))
             }
             
         } else if(selected===false){
@@ -41,7 +43,6 @@ const ButtonToggle :FC<Props> = ({item}) => {
         } 
 
     }, [selected])
-
     
     return(
 

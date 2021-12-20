@@ -18,7 +18,6 @@ export const AddItemMovieAction = (data:any) => {
     };
 };
 
-
 const startMovieList= () => ({
     type: types.movieListItemstart,
     payload: [],
