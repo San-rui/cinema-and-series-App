@@ -22,4 +22,9 @@ export const types  = {
     addItemstart: 'addItemstart',
     addItemSuccess:'addItemSuccess',
     addItemError:'addItemError',
+
+    movieListItemstart: 'movieListItemstart',
+    movieListItemSuccess:'movieListItemSuccess',
+    movieListItemError:'movieListItemError',
+
 }
