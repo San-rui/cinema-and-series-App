@@ -22,7 +22,7 @@ const ButtonToggle :FC<Props> = ({item}) => {
     const value = itemToDelete? true : false
 
     const [selected, setSelected] = useState<boolean>(value);
-    console.log(selected)
+
     const dispatch = useDispatch()
 
     useEffect(() => {

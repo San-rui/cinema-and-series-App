@@ -3,15 +3,21 @@ import { Item } from "../../types";
 import { apiCinema } from "../../utils/axios"
 import { types } from "../types";
 
-export const processCinemaList = (pageNumber:number) =>{
+export const processCinemaList = (pageNumber:number, search:string) =>{
 
     return async (dispatch: any) => {
 
         dispatch(startCinemaList());
 
         try {
-            const response = await apiCinema.get(`/movie/top_rated?page=${pageNumber}`);
-            dispatch(okCinemaList(response.data.results));
+            if(search){
+                const response = await apiCinema.get(`/search/multi?query=${search}&page=${pageNumber}`);
+                dispatch(okCinemaList(response.data.results));
+            }else{
+                const response = await apiCinema.get(`/movie/top_rated?page=${pageNumber}`);
+                dispatch(okCinemaList(response.data.results));
+            }
+            
         } catch (err) {
             dispatch(deniedCinemaList(err));
         }
