@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { processCinemaList } from "../../redux/actions/cinema";
 import { deleteMovieListItem, getMovieAction } from "../../redux/actions/dbCinema";
-import { processSearchMulti } from "../../redux/actions/searchMulti";
 import { Item, Store} from "../../types";
 
 type CinemaStore={
@@ -12,18 +11,6 @@ type CinemaStore={
     }
 }
 
-type SearchStore={
-    searchMulti:{
-        itemsSearch: Item[],
-        error: {errorCode:string }|null,
-    }
-}
-
-type movieDBStore={
-        data: Item[],
-        error: {errorCode:string }|null,
-}
-
 const useMovies = () =>{
     const [page, setPage]= useState(1)
     const [search, setSearch] = useState('')
@@ -31,9 +18,7 @@ const useMovies = () =>{
     const dispatch = useDispatch()
 
     const  { items }  = useSelector((state: CinemaStore) => state.cinema)
-    const  { itemsSearch }  = useSelector((state: SearchStore) => state.searchMulti)
     const dataMovieFb = useSelector((state: Store<Item>) => state.cinemaFb);
-
 
     useEffect(() => {
         dispatch(getMovieAction());
@@ -45,12 +30,11 @@ const useMovies = () =>{
 
     useEffect ( () => {
 
-        dispatch(processCinemaList(page))
-        dispatch(processSearchMulti(page, search))
+        dispatch(processCinemaList(page, search))
 
     },[dispatch, page, search])
 
-    return { items, page, setPage, itemsSearch, setSearch, search, deleteItem, dataMovieFb}
+    return { items, page, setPage, setSearch, deleteItem, dataMovieFb}
 
 }
 

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC} from "react";
 import { Layout } from "../../components/layout";
 import { MovieList} from "../../components/parts"
 import { WithAuth } from "../../hoc/WithAuth";
@@ -9,19 +9,14 @@ import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { Item } from "../../types";
 
 const Admin :FC= () =>{
 
-
-    const { items, setPage, itemsSearch, setSearch, search} = useMovies();
+    const { items, setPage, setSearch} = useMovies();
 
     const handleChange =(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>)=>{
         
-        console.log(event.target.value) //Valor a buscar
-        if(event.target.value!==''){
-            setSearch(event.target.value)
-        }
+        setSearch(event.target.value)
         
     }
 
@@ -43,7 +38,7 @@ const Admin :FC= () =>{
                     </IconButton>
                     <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                 </Paper>
-                {(search==='')?<MovieList items={items} setPage={setPage}/>: <MovieList items={itemsSearch} setPage={setPage}/>}
+                <MovieList items={items} setPage={setPage}/>
                 
             </div>
         </Layout>
