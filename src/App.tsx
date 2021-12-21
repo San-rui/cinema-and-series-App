@@ -9,6 +9,8 @@ import UsersPage from './pages/UsersPage';
 import Admin from './pages/Admin';
 
 import './scss/styles.scss';
+import Movies from './pages/Movies';
+import Series from './pages/Series';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/admin" component={Admin} />
+          <Route path="/movies" component={Movies} />
+          <Route path="/series" component={Series} />
           <Route path="/login" component={Login} />
           <Route path="/singup" component={SingUp} />
           <Route path="/users" component={UsersPage} />
