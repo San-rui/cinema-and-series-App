@@ -2,6 +2,9 @@ import { FC, useEffect, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import ToggleButton from '@mui/material/ToggleButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 import './styles.scss'
 import { Item } from "../../../types";
@@ -11,11 +14,11 @@ import { useMovies } from "../../../hooks";
 
 type Props={
     item:Item,
-    icon1: FC,
-    icon2: FC,
 }
 
-const ButtonToggle :FC<Props> = ({item, icon1, icon2}) => {
+const ButtonToggle :FC<Props> = ({ item }) => {
+
+    const role=  localStorage.getItem('role')
 
     const {deleteItem, dataMovieFb } = useMovies()
 
@@ -24,6 +27,7 @@ const ButtonToggle :FC<Props> = ({item, icon1, icon2}) => {
     const value = itemToDelete? true : false
 
     const [selected, setSelected] = useState<boolean>(value);
+    const [watched, setWatched] = useState(false);
 
     const dispatch = useDispatch()
 
@@ -45,20 +49,66 @@ const ButtonToggle :FC<Props> = ({item, icon1, icon2}) => {
         } 
 
     }, [selected])
+
+    const renderButtonAdmin =()=>{
+        if(role==='admin'){
+            return (
+                <ToggleButton
+                    value="check"
+                    selected={selected}
+                    onChange={() => {
+                        setSelected(!selected);
+                        console.log(selected)
+                    }}
+                    >
+                    {itemToDelete? <DeleteOutlineIcon/>: <AddIcon  />}
+                    {itemToDelete? 'DELETE':'ADD'}
+                </ToggleButton>
+            )
+        } else{
+            return (
+                <ToggleButton
+                    value="check"
+                    selected={watched}
+                    onChange={() => {
+                        setWatched(!watched);
+                
+                    }}
+                    >
+                    {itemToDelete? <VisibilityIcon/>: <VisibilityOffIcon   />}
+                    {itemToDelete? 'NOT WATCHED':'WATCHED'}
+                </ToggleButton>
+            )
+
+        }
+
+    }
     
     return(
-
-        <ToggleButton
-            value="check"
-            selected={selected}
-            onChange={() => {
-                setSelected(!selected);
-                console.log(selected)
-            }}
-            >
-            {itemToDelete? icon1: icon2}
-            {itemToDelete? 'DELETE':'ADD'}
-        </ToggleButton>
+        <>
+            {(role==='admin')? <ToggleButton
+                    value="check"
+                    selected={selected}
+                    onChange={() => {
+                        setSelected(!selected);
+                        console.log(selected)
+                    }}
+                    >
+                    {itemToDelete? <DeleteOutlineIcon/>: <AddIcon  />}
+                    {itemToDelete? 'DELETE':'ADD'}
+                </ToggleButton> : <ToggleButton
+                    value="check"
+                    selected={watched}
+                    onChange={() => {
+                        setWatched(!watched);
+                
+                    }}
+                    >
+                    {itemToDelete? <VisibilityIcon/>: <VisibilityOffIcon   />}
+                    {itemToDelete? 'NOT WATCHED':'WATCHED'}
+                </ToggleButton>
+            }
+        </>
     )
 }
 

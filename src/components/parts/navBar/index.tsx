@@ -25,7 +25,7 @@ const NavBar :FC = () =>{
                     <Link to='./movies' className='link-nav'>Movies</Link>
                     <Link to='./series' className='link-nav'>Series</Link>
                     {(role==='admin')&& <Link to='./admin' className='link-nav'>Admin</Link>}
-                    <Link to='./users' className='link-nav'>Users</Link>
+                    {(role==='admin')&&<Link to='./users' className='link-nav'>Users</Link>}
                     <Button>Exit</Button>
                 </Box>
             </Box>
@@ -43,7 +43,7 @@ const NavBar :FC = () =>{
                     <Link to='./movies'>Movies</Link>
                     <Link to='./series'>Series</Link>
                     {(role==='admin')&& <Link to='./admin' className='link-nav'>Admin</Link>}
-                    <Link to='./users'>Users</Link>
+                    {(role==='admin')&&<Link to='./users'>Users</Link>}
                     <Button>Exit</Button>
                 </Box>
             </Box>

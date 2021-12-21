@@ -31,7 +31,7 @@ export type Item = {
 export type Store<T> = {
     [name: string]: {
         loading?: boolean;
-        items?: T[];
+        items: T[];
         error?: string;
     };
 };
