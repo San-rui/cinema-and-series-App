@@ -40,9 +40,9 @@ const NavBar :FC = () =>{
                     >
                         <MenuIcon />
                 </IconButton>
-                </Box>
-                <Box sx={{ display:[open, open, 'none', 'none'], flexDirection:'column', backgroundColor: 'white', zIndex: 20, top:0,}}>
-                    <IconButton
+            </Box>
+            <Box sx={{ display:[open, open, 'none', 'none'], flexDirection:'column', backgroundColor: 'white', zIndex: 20, top:0,}}>
+                <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     edge="end"
@@ -56,7 +56,7 @@ const NavBar :FC = () =>{
                     <Link to='./'>Home</Link>
                     <Link to='./movies'>Movies</Link>
                     <Link to='./series'>Series</Link>
-                    <Link to='./admin'>Admin</Link>
+                    {(role==='admin')&& <Link to='./admin' className='link-nav'>Admin</Link>}
                     <Link to='./users'>Users</Link>
                     <Button>Exit</Button>
                 </Box>
