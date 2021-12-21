@@ -2,7 +2,6 @@ import { FC, useState } from "react";
 import { Link} from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
@@ -31,27 +30,14 @@ const NavBar :FC = () =>{
                 </Box>
             </Box>
             <Box sx={{ display: [display, display,'none','none'], backgroundColor: '#e5e5e5', color: 'white', height: '3rem', marginBottom: '2rem'}}>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="end"
-                    onClick={() => {setOpen('flex'); setDisplay('none')}}
-                    sx={{ ...(open && { display: 'none' }) }}
-                    >
-                        <MenuIcon />
-                </IconButton>
+                <button onClick={() => {setOpen('flex'); setDisplay('none')}}>
+                    <MenuIcon />
+                </button>
             </Box>
             <Box sx={{ display:[open, open, 'none', 'none'], flexDirection:'column', backgroundColor: 'white', zIndex: 20, top:0,}}>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="end"
-                    onClick={() => {setOpen('none'); ; setDisplay('flex')}}
-                    sx={{ ...(open && { display: 'none' }) }}
-                    >
-                        <CloseIcon />
-                        
-                </IconButton>
+                <button onClick={() => {setOpen('none'); ; setDisplay('flex')}}>
+                    <CloseIcon />
+                </button>
                 <Box sx={{ display:[open, open, 'none', 'none'], flexDirection:'column', backgroundColor: 'white', zIndex: 20, top:0,}}>
                     <Link to='./'>Home</Link>
                     <Link to='./movies'>Movies</Link>
