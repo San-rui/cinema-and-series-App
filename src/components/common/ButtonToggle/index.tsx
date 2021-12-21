@@ -10,10 +10,12 @@ import { AddItemMovieAction } from "../../../redux/actions/dbCinema";
 import { useMovies } from "../../../hooks";
 
 type Props={
-    item:Item, 
+    item:Item,
+    icon1: FC,
+    icon2: FC,
 }
 
-const ButtonToggle :FC<Props> = ({item}) => {
+const ButtonToggle :FC<Props> = ({item, icon1, icon2}) => {
 
     const {deleteItem, dataMovieFb } = useMovies()
 
@@ -54,7 +56,7 @@ const ButtonToggle :FC<Props> = ({item}) => {
                 console.log(selected)
             }}
             >
-            {itemToDelete? <DeleteOutlineIcon/>: <AddIcon  />}
+            {itemToDelete? icon1: icon2}
             {itemToDelete? 'DELETE':'ADD'}
         </ToggleButton>
     )

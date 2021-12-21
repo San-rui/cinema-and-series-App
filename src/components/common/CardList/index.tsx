@@ -7,10 +7,12 @@ import { Item } from "../../../types";
 import { ButtonToggle } from "../index"
 
 type Props={
-    items:Item[], 
+    items:Item[],
+    icon1: any,
+    icon2: any, 
 }
 
-const CardList :FC<Props> = ({items}) =>{
+const CardList :FC<Props> = ({items, icon1, icon2}) =>{
 
     return (
         <>
@@ -40,7 +42,7 @@ const CardList :FC<Props> = ({items}) =>{
                                     {item.vote_average}
                                 </Typography>
                                 <StarRating stars={item.vote_average} />
-                                <ButtonToggle item={item}/>
+                                <ButtonToggle item={item} icon1={icon1} icon2={icon2}/>
                             </Card>
                         </div>
                     )
