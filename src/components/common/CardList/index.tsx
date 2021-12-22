@@ -2,15 +2,25 @@ import { FC } from "react";
 
 import StarRating from "../StarRating"
 import { Box, Card, Typography } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { Item } from "../../../types";
 import { ButtonToggle } from "../index"
+
+
+const useStyle = makeStyles({
+    card:{ 
+        backgroundColor: '#81b29a',
+    }
+})
 
 type Props={
     items:Item[], 
 }
 
 const CardList :FC<Props> = ({items}) =>{
+
+    const classes = useStyle()
 
     return (
         <>
@@ -27,16 +37,16 @@ const CardList :FC<Props> = ({items}) =>{
             
                     return(
                         <div id={`${item.id}`}>
-                            <Card sx={{ maxWidth: 307, maxHeight: 620, width: "19vw", height:"33rem", display: 'flex', flexDirection: 'column', justifyContent:"space-between", padding: "1rem", borderRadius: '1rem', backgroundColor:'#ffffff10', backdropFilter: 'blur(12px)'}} variant="outlined">
+                            <Card className={classes.card} sx={{ maxWidth: 307, maxHeight: 620, width: "19vw", height:"33rem", display: 'flex', flexDirection: 'column', justifyContent:"space-between", padding: "1rem", borderRadius: '1rem'}} variant="outlined">
                                 <img
                                     src={srcImage}
                                     alt={item.original_title}
                                     loading="lazy"
                                 />
-                                <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", color:'white' }} color="text.secondary" gutterBottom>
+                                <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", }} color="text.secondary" gutterBottom>
                                     {item.original_title}
                                 </Typography>
-                                <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", color:'white'  }} color="text.secondary" gutterBottom>
+                                <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif",  }} color="text.secondary" gutterBottom>
                                     {item.vote_average}
                                 </Typography>
                                 <StarRating stars={item.vote_average} />

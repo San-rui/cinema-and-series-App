@@ -1,22 +1,51 @@
 import { FC, useEffect, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
-import ToggleButton from '@mui/material/ToggleButton';
+import Button from '@mui/material/Button';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-
+import { makeStyles } from "@material-ui/core/styles";
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import './styles.scss'
-import { Item } from "../../../types";
-import { useDispatch } from "react-redux";
+import { Item, User } from "../../../types";
+import { useDispatch, useSelector } from "react-redux";
 import { AddItemMovieAction } from "../../../redux/actions/dbCinema";
 import { useMovies } from "../../../hooks";
+import React from "react";
+
+const useStyle = makeStyles({
+    
+    button:{ 
+        backgroundColor: 'blue',
+        //color:'red'
+    },
+    
+})
 
 type Props={
     item:Item,
 }
+type Store={
+    user:{ 
+        currentUser: User
+    }
+}
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref,
+    ) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
 
 const ButtonToggle :FC<Props> = ({ item }) => {
+
+    const classes = useStyle()
+
+    const userLogged =useSelector((store:Store)=>store.user)
 
     const role=  localStorage.getItem('role')
 
@@ -28,8 +57,23 @@ const ButtonToggle :FC<Props> = ({ item }) => {
 
     const [selected, setSelected] = useState<boolean>(value);
     const [watched, setWatched] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [text, setText]= useState<string>()
 
     const dispatch = useDispatch()
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+    
+        setOpen(false);
+    };
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
 
     useEffect(() => {
 
@@ -39,75 +83,52 @@ const ButtonToggle :FC<Props> = ({ item }) => {
                 const data= (item.media_type)?item : {...item, media_type: 'movie'}
 
                 dispatch(AddItemMovieAction(data))
+                setText('The item was succeeded saved')
             }
             
         } else if(selected===false){
 
             if(itemToDelete){
                 deleteItem(itemToDelete.idDB)
+                setText('The item was succeeded deleted')
             }
         } 
 
     }, [selected])
 
-    const renderButtonAdmin =()=>{
-        if(role==='admin'){
-            return (
-                <ToggleButton
-                    value="check"
-                    selected={selected}
-                    onChange={() => {
-                        setSelected(!selected);
-                        console.log(selected)
-                    }}
-                    >
-                    {itemToDelete? <DeleteOutlineIcon/>: <AddIcon  />}
-                    {itemToDelete? 'DELETE':'ADD'}
-                </ToggleButton>
-            )
-        } else{
-            return (
-                <ToggleButton
-                    value="check"
-                    selected={watched}
-                    onChange={() => {
-                        setWatched(!watched);
-                
-                    }}
-                    >
-                    {itemToDelete? <VisibilityIcon/>: <VisibilityOffIcon   />}
-                    {itemToDelete? 'NOT WATCHED':'WATCHED'}
-                </ToggleButton>
-            )
-
-        }
-
-    }
     
     return(
         <>
-            {(role==='admin')? <ToggleButton
+            {(role==='admin')? <Button
                     value="check"
-                    selected={selected}
-                    onChange={() => {
+                    
+                    onClick={() => {
                         setSelected(!selected);
                         console.log(selected)
+                        handleClick()
                     }}
+                    className={classes.button}
                     >
                     {itemToDelete? <DeleteOutlineIcon/>: <AddIcon  />}
                     {itemToDelete? 'DELETE':'ADD'}
-                </ToggleButton> : <ToggleButton
+                </Button> : <Button
                     value="check"
-                    selected={watched}
-                    onChange={() => {
+                    
+                    onClick={() => {
                         setWatched(!watched);
                 
                     }}
+                    className={classes.button}
                     >
-                    {itemToDelete? <VisibilityIcon/>: <VisibilityOffIcon   />}
-                    {itemToDelete? 'NOT WATCHED':'WATCHED'}
-                </ToggleButton>
+                    {watched? <VisibilityOffIcon   /> : <VisibilityIcon/>}
+                    {watched? 'NOT WATCHED':'WATCHED'}
+                </Button>
             }
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} >
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%', backgroundColor:'#e9c46a' }}>
+                    {text}
+                </Alert>
+            </Snackbar>
         </>
     )
 }
