@@ -1,10 +1,11 @@
 import { FC } from "react";
 
+import './styles.scss'
 
 const Footer:FC = ()=>{
     return (
-        <footer>
-            
+        <footer className="footer">
+            soy el footer
             
         </footer>
     )
