@@ -5,7 +5,6 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { makeStyles } from "@material-ui/core/styles";
-import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
@@ -19,9 +18,24 @@ import React from "react";
 const useStyle = makeStyles({
     
     button:{ 
-        backgroundColor: 'blue',
-        //color:'red'
+        backgroundColor: '#f2cc8f',
+        color:"#3d405b",
+        borderRadius:'1.5rem',
+        boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px',
+        height: '2.5rem',
+        '&:hover': {
+            backgroundColor: '#faedcd',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#e07a5f',
+            borderColor: '#e07a5f',
+        },
+        '&:focus': {
+            boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px',
+        },
     },
+    
     
 })
 
@@ -99,9 +113,9 @@ const ButtonToggle :FC<Props> = ({ item }) => {
     
     return(
         <>
-            {(role==='admin')? <Button
+            {(role==='admin')? 
+                <Button
                     value="check"
-                    
                     onClick={() => {
                         setSelected(!selected);
                         console.log(selected)
@@ -111,9 +125,9 @@ const ButtonToggle :FC<Props> = ({ item }) => {
                     >
                     {itemToDelete? <DeleteOutlineIcon/>: <AddIcon  />}
                     {itemToDelete? 'DELETE':'ADD'}
-                </Button> : <Button
+                </Button> : 
+                <Button
                     value="check"
-                    
                     onClick={() => {
                         setWatched(!watched);
                 

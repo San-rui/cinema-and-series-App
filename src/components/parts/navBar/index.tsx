@@ -18,7 +18,7 @@ const NavBar :FC = () =>{
 
     return (
         <>
-            <Box className="navBar" sx={{ display: ['none','none','flex','flex'], justifyContent:'space-between', backgroundColor: '#e5e5e5', marginBottom: '2rem'}}>
+            <Box className="navBar" sx={{ display: ['none','none','flex','flex'], justifyContent:'space-between', backgroundColor: '#f4f1de', marginBottom: '2rem'}}>
                 <Typography sx={{color: "black", fontSize:"2rem"}}>Cinema</Typography>
                 <Box>
                     <Link to='./' className='link-nav'>Home</Link>
@@ -29,7 +29,7 @@ const NavBar :FC = () =>{
                     <Button>Exit</Button>
                 </Box>
             </Box>
-            <Box sx={{ display: [display, display,'none','none'], backgroundColor: '#e5e5e5', color: 'white', height: '3rem', marginBottom: '2rem'}}>
+            <Box sx={{ display: [display, display,'none','none'], backgroundColor: '#edf2f4', color: 'white', height: '3rem', marginBottom: '2rem'}}>
                 <button onClick={() => {setOpen('flex'); setDisplay('none')}}>
                     <MenuIcon />
                 </button>
