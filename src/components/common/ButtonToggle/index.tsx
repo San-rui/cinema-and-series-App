@@ -11,8 +11,8 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import './styles.scss'
 import { Item, User } from "../../../types";
 import { useDispatch, useSelector } from "react-redux";
-import { AddItemMovieAction } from "../../../redux/actions/dbCinema";
-import { useMovies } from "../../../hooks";
+import { AddItemMovieAction, patchMovieListItem } from "../../../redux/actions/dbCinema";
+import { useMovies, useUsers } from "../../../hooks";
 import React from "react";
 
 const useStyle = makeStyles({
@@ -58,16 +58,13 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 const ButtonToggle :FC<Props> = ({ item }) => {
 
     const classes = useStyle()
-
-    const userLogged =useSelector((store:Store)=>store.user)
+    const { currentUser } = useUsers()
 
     const role=  localStorage.getItem('role')
 
     const {deleteItem, dataMovieFb } = useMovies()
-
-    const itemToDelete=dataMovieFb.items?.find(element => element.id=== item.id)
-
-    const value = itemToDelete? true : false
+    const itemSelected=dataMovieFb.items?.find(element => element.id=== item.id)
+    const value = itemSelected? true : false
 
     const [selected, setSelected] = useState<boolean>(value);
     const [watched, setWatched] = useState(false);
@@ -80,7 +77,6 @@ const ButtonToggle :FC<Props> = ({ item }) => {
         if (reason === 'clickaway') {
             return;
         }
-    
         setOpen(false);
     };
 
@@ -93,7 +89,7 @@ const ButtonToggle :FC<Props> = ({ item }) => {
 
         if(selected===true){
             
-            if(!itemToDelete){
+            if(!itemSelected){
                 const data= (item.media_type)?item : {...item, media_type: 'movie'}
 
                 dispatch(AddItemMovieAction(data))
@@ -102,15 +98,29 @@ const ButtonToggle :FC<Props> = ({ item }) => {
             
         } else if(selected===false){
 
-            if(itemToDelete){
-                deleteItem(itemToDelete.idDB)
+            if(itemSelected){
+                deleteItem(itemSelected.idDB)
                 setText('The item was succeeded deleted')
             }
-        } 
+        }
 
-    }, [selected])
+        if(watched===true){
 
-    
+            setText('The item was succeeded saved as WATCHED')
+            const array = [];
+            //aca hay un error porque lo que quiero guardar es el idDB pero no me lo reconoce 
+            array.push(currentUser.email);
+
+            console.log(array, currentUser.email);
+            const data= (watched) && {...item, watched: array}
+            dispatch(patchMovieListItem (data, itemSelected?.idDB))
+        } else if(watched===false){
+
+            setText('The item was succeeded removed from WATCHED')
+        }
+
+    }, [selected, watched])
+
     return(
         <>
             {(role==='admin')? 
@@ -118,19 +128,18 @@ const ButtonToggle :FC<Props> = ({ item }) => {
                     value="check"
                     onClick={() => {
                         setSelected(!selected);
-                        console.log(selected)
                         handleClick()
                     }}
                     className={classes.button}
                     >
-                    {itemToDelete? <DeleteOutlineIcon/>: <AddIcon  />}
-                    {itemToDelete? 'DELETE':'ADD'}
+                    {itemSelected? <DeleteOutlineIcon/>: <AddIcon  />}
+                    {itemSelected? 'DELETE':'ADD'}
                 </Button> : 
                 <Button
                     value="check"
                     onClick={() => {
                         setWatched(!watched);
-                
+                        handleClick()
                     }}
                     className={classes.button}
                     >
