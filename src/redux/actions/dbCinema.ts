@@ -53,6 +53,24 @@ export const deleteMovieListItem = (itemID:string | undefined) => {
     
 };
 
+export const patchMovieListItem = (data:Item ,itemID:string | undefined) => { 
+
+    return async (dispatch:any)=>{
+
+        dispatch(startMovieList())
+
+        try {
+            await apiFirebase.patch(`/movieList/${itemID}.json`, data);
+            const response = await apiFirebase.get('/movieList.json');
+            
+            dispatch(okMovieList (mapToArray(response.data)));
+        } catch (err) {
+            dispatch(deniedMovieList(err));
+        }
+    };
+    
+};
+
 export const getMovieAction = () => {
     return async (dispatch: any) => {
         dispatch(startMovieList());
