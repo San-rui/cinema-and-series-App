@@ -4,11 +4,16 @@ import { useDispatch, useSelector } from "react-redux"
 import { addUserAction, getUsersAction } from "../../redux/actions/usersList";
 import { AddUserType, Store, User } from "../../types"
 
+type StoreUser={
+    user:User
+}
+
 const useUsers = () => {
 
     const dispatch = useDispatch()
 
     const users = useSelector((state: Store<User>) => state.users);
+    const currentUser =useSelector((store:StoreUser)=>store.user);
 
     useEffect(() => {
         dispatch(getUsersAction());
@@ -27,7 +32,7 @@ const useUsers = () => {
 
     };
 
-    return { users, addUser, getUser };
+    return { users, addUser, getUser, currentUser };
 
 }
 
