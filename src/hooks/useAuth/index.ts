@@ -12,18 +12,18 @@ import { useUsers } from "..";
 
 const useAuth = ()  => {
     
-    const dispatch = useDispatch();
+    const [hasUserLoggedIn, setHasUserLoggedIn] = useState<boolean>();
 
-    const { users } =useUsers() 
+    const dispatch = useDispatch();
+    const { users } =useUsers() ;
+    const { push }= useHistory();
 
     const [ tokenStorage, setTokenStorage] = useState <string | undefined>(
         localStorage.getItem('user-token') || undefined)
 
-    const [hasUserLoggedIn, setHasUserLoggedIn] = useState<boolean>();
-    const { push }= useHistory();
-
     useEffect ( () => {
         loginWithToken()
+        
     },[])
 
     const createUserToken = async (user: User): Promise<string | null> => {
@@ -69,40 +69,40 @@ const useAuth = ()  => {
             }
     };
 
-        const loginWithToken = async () => {
-            let user;
-            try {
+    const loginWithToken = async () => {
+        let user;
+        try {
 
-                if (tokenStorage) {
-                    user = users.items?.find((user) => user.sessionToken === tokenStorage);
-                }
-            
-                if (user) {
-                    dispatch(processUser(user))
-                    setHasUserLoggedIn(true);
-                } else {
-                    setHasUserLoggedIn(false);
-                }
-            } catch (e) {
-              // console.log(e);
+            if (tokenStorage) {
+                user = users.items?.find((user) => user.sessionToken === tokenStorage);
             }
-        };
+        
+            if (user) {
+                dispatch(processUser(user))
+                setHasUserLoggedIn(true);
+            } else {
+                setHasUserLoggedIn(false);
+            }
+        } catch (e) {
+            // console.log(e);
+        }
+    };
 
-        const logout = () => {
-            localStorage.removeItem('user-token')
+    const logout = () => {
+        localStorage.removeItem('user-token')
+        push('/login')
+        dispatch(okUser(undefined))
+    };
+
+    const signUp = async(data: Omit<User, 'id'>) => {
+        try {
+            await signup(data);
             push('/login')
-            dispatch(okUser(undefined))
-        };
-
-        const signUp = async(data: Omit<User, 'id'>) => {
-            try {
-                await signup(data);
-                push('/login')
-                
-            } catch (err) {
-                console.log(err);
-                }
-        };
+            
+        } catch (err) {
+            console.log(err);
+            }
+    };
 
     return { isUserLogged: !!(localStorage.getItem('user-token')),  login, loginWithToken, logout, signUp, hasUserLoggedIn }
 }
