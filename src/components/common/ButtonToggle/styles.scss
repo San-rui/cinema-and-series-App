@@ -1,4 +1,32 @@
-.taggle-button{
-    background-color:red;
-    
+.taggle-button{ 
+    background-color: #f2cc8f;
+    color:#3d405b;
+    border-radius:1.5rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    height: 3rem;
+    border:none;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    cursor: pointer;
+
+    .taggle-button-icon{
+        margin-right: 1rem;
+    }
+
 }
+
+.taggle-button:hover {
+    background-color: rgb(252, 213, 130)
+};
+
+.taggle-button:active {
+    box-shadow: none;
+    background-color: #e07a5f;
+    border-color: #e07a5f;
+};
+
+.taggle-button:focus {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+

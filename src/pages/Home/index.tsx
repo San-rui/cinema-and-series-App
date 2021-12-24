@@ -10,7 +10,6 @@ const Home :FC= () =>{
 
     const { dataMovieFb } = useMovies()
     const { currentUser } = useAuth()
-    console.log(currentUser)
 
     return(
         <Layout>
