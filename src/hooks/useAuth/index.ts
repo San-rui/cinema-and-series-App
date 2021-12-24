@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../../api/firebase";
 
@@ -9,10 +9,14 @@ import { apiFirebase} from "../../utils";
 import { okUser, processUser } from "../../redux/actions/user";
 import { useUsers } from "..";
 
+type StoreUser={
+    user:User
+}
 
 const useAuth = ()  => {
     
     const [hasUserLoggedIn, setHasUserLoggedIn] = useState<boolean>();
+    const currentUser =useSelector((store:StoreUser)=>store.user);
 
     const dispatch = useDispatch();
     const { users } =useUsers() ;
@@ -30,11 +34,11 @@ const useAuth = ()  => {
         try {
             const newToken = Math.random().toString(36).substr(2);
             await apiFirebase.patch(`/users/${user.idDB}.json`, { sessionToken: newToken });
-            localStorage.setItem('role', user.role)
+            
             return newToken;
-            } catch (err) {
+        } catch (err) {
             return null;
-            }
+        }
     };
 
     useEffect ( () => {
@@ -104,7 +108,13 @@ const useAuth = ()  => {
             }
     };
 
-    return { isUserLogged: !!(localStorage.getItem('user-token')),  login, loginWithToken, logout, signUp, hasUserLoggedIn }
+    return { isUserLogged: !!(localStorage.getItem('user-token')),  
+            login, 
+            loginWithToken, 
+            logout, signUp, 
+            hasUserLoggedIn, 
+            currentUser  
+    }
 }
 
 export { useAuth }

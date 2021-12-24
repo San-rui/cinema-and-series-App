@@ -8,13 +8,15 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
 import './styles.scss'
+import { useAuth } from "../../../hooks";
 
 const NavBar :FC = () =>{
 
     const [open, setOpen] = useState('none');
     const [display, setDisplay] = useState('flex');
-    
-    const role=  localStorage.getItem('role')
+
+    const { currentUser } = useAuth()
+    const role=  currentUser.role
 
     return (
         <>

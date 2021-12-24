@@ -9,10 +9,10 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import './styles.scss'
-import { Item, User } from "../../../types";
+import { Item } from "../../../types";
 import { useDispatch} from "react-redux";
 import { AddItemMovieAction, patchMovieListItem } from "../../../redux/actions/dbCinema";
-import { useMovies, useUsers } from "../../../hooks";
+import { useAuth, useMovies } from "../../../hooks";
 import React from "react";
 
 const useStyle = makeStyles({
@@ -42,11 +42,7 @@ const useStyle = makeStyles({
 type Props={
     item:Item,
 }
-type Store={
-    user:{ 
-        currentUser: User
-    }
-}
+
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -58,10 +54,10 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 const ButtonToggle :FC<Props> = ({ item }) => {
 
     const classes = useStyle()
-    const { currentUser } = useUsers()
+    const { currentUser } = useAuth()
     const dispatch = useDispatch()
 
-    const role=  localStorage.getItem('role')
+    const role=  currentUser.role
 
     const {deleteItem, dataMovieFb } = useMovies()
     const itemSelected=dataMovieFb.items.find(element => element.id=== item.id)

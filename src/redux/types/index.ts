@@ -19,6 +19,10 @@ export const types  = {
     addUserSuccess:'addUserSuccess',
     addUserError:'addUserError',
 
+    getUsersStart: 'getUsersStart',
+    getUsersSuccess:'getUsersSuccess',
+    getUsersError:'getUsersError',
+
     addItemstart: 'addItemstart',
     addItemSuccess:'addItemSuccess',
     addItemError:'addItemError',

@@ -16,18 +16,18 @@ const intialState: UserState = {
 export const usersReducer = (state = intialState, action: any) => {
 
     switch(action.type) {
-        case types.addUserstart :
+        case types.getUsersStart :
             return {
                 ...state,
                 loading: true,
             }
-        case types.addUserSuccess:
+        case types.getUsersSuccess:
             return {
                 ...state,
                 items: action.payload,//aca debería estar cargado,
                 loading: false
             }
-        case types.addUserError :
+        case types.getUsersError :
             return {
                 ...state,
                 loading: false,
