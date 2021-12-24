@@ -10,7 +10,7 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import './styles.scss'
 import { Item, User } from "../../../types";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { AddItemMovieAction, patchMovieListItem } from "../../../redux/actions/dbCinema";
 import { useMovies, useUsers } from "../../../hooks";
 import React from "react";
@@ -59,20 +59,19 @@ const ButtonToggle :FC<Props> = ({ item }) => {
 
     const classes = useStyle()
     const { currentUser } = useUsers()
+    const dispatch = useDispatch()
 
     const role=  localStorage.getItem('role')
 
     const {deleteItem, dataMovieFb } = useMovies()
-    const itemSelected=dataMovieFb.items?.find(element => element.id=== item.id)
+    const itemSelected=dataMovieFb.items.find(element => element.id=== item.id)
     const value = itemSelected? true : false
 
     const [selected, setSelected] = useState<boolean>(value);
     const [watched, setWatched] = useState(false);
     const [open, setOpen] = useState(false);
     const [text, setText]= useState<string>()
-
-    const dispatch = useDispatch()
-
+    
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
@@ -83,6 +82,7 @@ const ButtonToggle :FC<Props> = ({ item }) => {
     const handleClick = () => {
         setOpen(true);
     };
+
 
 
     useEffect(() => {
@@ -106,17 +106,40 @@ const ButtonToggle :FC<Props> = ({ item }) => {
 
         if(watched===true){
 
-            setText('The item was succeeded saved as WATCHED')
-            const array = [];
-            //aca hay un error porque lo que quiero guardar es el idDB pero no me lo reconoce 
-            array.push(currentUser.email);
+            const array = itemSelected?.watched;
 
-            console.log(array, currentUser.email);
-            const data= (watched) && {...item, watched: array}
-            dispatch(patchMovieListItem (data, itemSelected?.idDB))
+            //aca hay un error porque lo que quiero guardar es el idDB pero no me lo reconoce 
+
+            if(array?.includes(currentUser.email) === false){
+                array?.push(currentUser.email);
+
+                const data= (watched) && {...item, watched: array}
+                dispatch(patchMovieListItem (data, itemSelected?.idDB))
+                setText('The item was succeeded saved as WATCHED')
+            }
+            
+
         } else if(watched===false){
 
-            setText('The item was succeeded removed from WATCHED')
+            console.log("el array:", itemSelected?.watched )
+            
+            const arr =itemSelected?.watched
+            console.log("arr inicial ", arr)
+            var i = arr?.indexOf( currentUser.email );
+
+            if(i && i!==-1){
+                arr?.splice( i, 1 );
+                console.log("arr final ", arr, i)
+                
+                //const data= (watched) && {...item, watched: arr}
+                if(watched){
+                    const data = {...item, watched: arr}
+                    dispatch(patchMovieListItem (data, itemSelected?.idDB))
+                }
+                
+                setText('The item was succeeded removed from WATCHED')
+            }
+
         }
 
     }, [selected, watched])
