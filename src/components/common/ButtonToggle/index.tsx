@@ -1,43 +1,16 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
-import Button from '@mui/material/Button';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { makeStyles } from "@material-ui/core/styles";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import './styles.scss'
-import { Item } from "../../../types";
-import { useDispatch} from "react-redux";
-import { AddItemMovieAction, patchMovieListItem } from "../../../redux/actions/dbCinema";
-import { useAuth, useMovies } from "../../../hooks";
-import React from "react";
 
-const useStyle = makeStyles({
-    
-    button:{ 
-        backgroundColor: '#f2cc8f',
-        color:"#3d405b",
-        borderRadius:'1.5rem',
-        boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px',
-        height: '2.5rem',
-        '&:hover': {
-            backgroundColor: '#faedcd',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#e07a5f',
-            borderColor: '#e07a5f',
-        },
-        '&:focus': {
-            boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px',
-        },
-    },
-    
-    
-})
+import { Item } from "../../../types";
+import { useAuth, useItems, useMovies } from "../../../hooks";
+import React from "react";
 
 type Props={
     item:Item,
@@ -47,26 +20,23 @@ type Props={
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
     ref,
-    ) {
+) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-    });
+});
 
 const ButtonToggle :FC<Props> = ({ item }) => {
 
-    const classes = useStyle()
+    const {addItem, removeItem, text, watchedItem, notWatchedItem, } = useItems()
     const { currentUser } = useAuth()
-    const dispatch = useDispatch()
 
-    const role=  currentUser.role
-
-    const {deleteItem, dataMovieFb } = useMovies()
+    const { dataMovieFb } = useMovies()
     const itemSelected=dataMovieFb.items.find(element => element.id=== item.id)
+    const itemWatched= itemSelected?.watched?.includes(currentUser.email)
     const value = itemSelected? true : false
 
     const [selected, setSelected] = useState<boolean>(value);
     const [watched, setWatched] = useState(false);
     const [open, setOpen] = useState(false);
-    const [text, setText]= useState<string>()
     
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
@@ -79,95 +49,44 @@ const ButtonToggle :FC<Props> = ({ item }) => {
         setOpen(true);
     };
 
-
-
-    useEffect(() => {
-
-        if(selected===true){
-            
-            if(!itemSelected){
-                const data= (item.media_type)?item : {...item, media_type: 'movie'}
-
-                dispatch(AddItemMovieAction(data))
-                setText('The item was succeeded saved')
-            }
-            
-        } else if(selected===false){
-
-            if(itemSelected){
-                deleteItem(itemSelected.idDB)
-                setText('The item was succeeded deleted')
-            }
-        }
-
-        if(watched===true){
-
-            const array = itemSelected?.watched;
-
-            //aca hay un error porque lo que quiero guardar es el idDB pero no me lo reconoce 
-
-            if(array?.includes(currentUser.email) === false){
-                array?.push(currentUser.email);
-
-                const data= (watched) && {...item, watched: array}
-                dispatch(patchMovieListItem (data, itemSelected?.idDB))
-                setText('The item was succeeded saved as WATCHED')
-            }
-            
-
-        } else if(watched===false){
-
-            console.log("el array:", itemSelected?.watched )
-            
-            const arr =itemSelected?.watched
-            console.log("arr inicial ", arr)
-            var i = arr?.indexOf( currentUser.email );
-
-            if(i && i!==-1){
-                arr?.splice( i, 1 );
-                console.log("arr final ", arr, i)
-                
-                //const data= (watched) && {...item, watched: arr}
-                if(watched){
-                    const data = {...item, watched: arr}
-                    dispatch(patchMovieListItem (data, itemSelected?.idDB))
-                }
-                
-                setText('The item was succeeded removed from WATCHED')
-            }
-
-        }
-
-    }, [selected, watched])
+    const SnackbarColorWatched= itemWatched? '#f2cc8f' : '#e76f51'
+    const SnackbarColorAdded= itemSelected? '#f2cc8f' : '#e76f51'
+    const SnackbarColor= SnackbarColorAdded? SnackbarColorAdded: SnackbarColorWatched
 
     return(
         <>
-            {(role==='admin')? 
-                <Button
+            {(currentUser.role==='admin')? 
+                <button
+                    className="taggle-button"
                     value="check"
+                    style={{backgroundColor:SnackbarColor}}
                     onClick={() => {
                         setSelected(!selected);
                         handleClick()
+                        !selected? addItem(itemSelected, item) : removeItem(itemSelected)
                     }}
-                    className={classes.button}
                     >
-                    {itemSelected? <DeleteOutlineIcon/>: <AddIcon  />}
+                    {itemSelected? <DeleteOutlineIcon className="taggle-button-icon"/>: <AddIcon  className="taggle-button-icon"/>}
                     {itemSelected? 'DELETE':'ADD'}
-                </Button> : 
-                <Button
+                </button> : 
+                <button
+                    className="taggle-button"
+                    style={{backgroundColor:SnackbarColor}}
                     value="check"
                     onClick={() => {
                         setWatched(!watched);
                         handleClick()
+                        console.log(watched)
+                        !itemWatched? watchedItem(itemSelected, item): notWatchedItem(itemSelected, item)
+                        
                     }}
-                    className={classes.button}
                     >
-                    {watched? <VisibilityOffIcon   /> : <VisibilityIcon/>}
-                    {watched? 'NOT WATCHED':'WATCHED'}
-                </Button>
+                    {itemWatched? <VisibilityOffIcon className="taggle-button-icon"/> : <VisibilityIcon className="taggle-button-icon"/>}
+                    {itemWatched? 'NOT WATCHED':'WATCHED'}
+                </button>
             }
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} >
-                <Alert onClose={handleClose} severity="success" sx={{ width: '100%', backgroundColor:'#e9c46a' }}>
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%', backgroundColor:SnackbarColor}}>
                     {text}
                 </Alert>
             </Snackbar>

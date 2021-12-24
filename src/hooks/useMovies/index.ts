@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { processCinemaList } from "../../redux/actions/cinema";
-import { deleteMovieListItem, getMovieAction } from "../../redux/actions/dbCinema";
+import { getMovieAction } from "../../redux/actions/dbCinema";
 import { Item, Store, TotalResults} from "../../types";
 
 type CinemaStore={
@@ -12,9 +12,9 @@ type CinemaStore={
 }
 
 const useMovies = () =>{
+
     const [page, setPage]= useState(1)
     const [search, setSearch] = useState('')
-
     const dispatch = useDispatch()
 
     const  { items }  = useSelector((state: CinemaStore) => state.cinema)
@@ -24,17 +24,18 @@ const useMovies = () =>{
         dispatch(getMovieAction());
     }, []);
 
-    const deleteItem = (idDB:string | undefined) =>{
-        dispatch(deleteMovieListItem (idDB))
-    }
-
     useEffect ( () => {
 
         dispatch(processCinemaList(page, search))
 
     },[dispatch, page, search])
 
-    return { items, page, setPage, setSearch, deleteItem, dataMovieFb}
+    return { items, 
+            page, 
+            setPage, 
+            setSearch, 
+            dataMovieFb
+    }
 
 }
 
