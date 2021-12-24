@@ -9,7 +9,6 @@ const Series :FC= () =>{
     const { dataMovieFb } = useMovies()
 
     const movies = dataMovieFb.items.filter(item=> item.media_type==='tv')
-    console.log(movies)
 
     return(
         <Layout>

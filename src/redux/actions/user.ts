@@ -11,7 +11,6 @@ export const processUser = (user: User) =>{
         } catch (err) {
             dispatch(DeniedUser(err));
         }
-
     }
 }
 
