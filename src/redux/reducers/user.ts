@@ -15,7 +15,7 @@ export const userReducer = (state=initialState, action: any) =>{
                 email: action.payload.email,
                 role: action.payload.role,
                 name: action.payload.name,
-                id: action.payload.idDB,
+                idDB: action.payload.idDB,
                 sessionToken: action.payload.sessionToken,
             }
 
