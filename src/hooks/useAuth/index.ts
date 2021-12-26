@@ -93,6 +93,7 @@ const useAuth = ()  => {
     };
 
     const logout = () => {
+        console.log('aca')
         localStorage.removeItem('user-token')
         push('/login')
         dispatch(okUser(undefined))
@@ -111,7 +112,8 @@ const useAuth = ()  => {
     return { isUserLogged: !!(localStorage.getItem('user-token')),  
             login, 
             loginWithToken, 
-            logout, signUp, 
+            logout, 
+            signUp, 
             hasUserLoggedIn, 
             currentUser  
     }

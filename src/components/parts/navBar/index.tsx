@@ -15,8 +15,8 @@ const NavBar :FC = () =>{
     const [open, setOpen] = useState('none');
     const [display, setDisplay] = useState('flex');
 
-    const { currentUser } = useAuth()
-    const role=  currentUser.role
+    const { currentUser, logout } = useAuth();
+    const role=  currentUser.role;
 
     return (
         <>
@@ -26,8 +26,8 @@ const NavBar :FC = () =>{
                     <Link to='./' className='link-nav'>Home</Link>
                     <Link to='./movies' className='link-nav'>Movies</Link>
                     <Link to='./series' className='link-nav'>Series</Link>
-                    {(role==='admin')&& <Link to='./admin' className='link-nav'>Admin</Link>}
-                    {(role==='admin')&&<Link to='./users' className='link-nav'>Users</Link>}
+                    {(role==='admin') && <Link to='./admin' className='link-nav'>Admin</Link>}
+                    {(role==='admin') && <Link to='./users' className='link-nav'>Users</Link>}
                     <Button>Exit</Button>
                 </Box>
             </Box>
@@ -46,7 +46,11 @@ const NavBar :FC = () =>{
                     <Link to='./series'>Series</Link>
                     {(role==='admin')&& <Link to='./admin' className='link-nav'>Admin</Link>}
                     {(role==='admin')&&<Link to='./users'>Users</Link>}
-                    <Button>Exit</Button>
+                    <Button
+                        onClick={()=>{
+                            logout()
+                        }}
+                    >Exit</Button>
                 </Box>
             </Box>
         </>

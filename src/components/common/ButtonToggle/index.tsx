@@ -31,8 +31,11 @@ const ButtonToggle :FC<Props> = ({ item }) => {
 
     const { dataMovieFb } = useMovies()
     const itemSelected=dataMovieFb.items.find(element => element.id=== item.id)
-    const itemWatched= itemSelected?.watched?.includes(currentUser.email)
+    const itemWatched= itemSelected?.watched?.includes(currentUser.idDB)
+
     const value = itemSelected? true : false
+    
+    //console.log(value)
 
     const [selected, setSelected] = useState<boolean>(value);
     const [watched, setWatched] = useState(false);
@@ -52,7 +55,7 @@ const ButtonToggle :FC<Props> = ({ item }) => {
     const SnackbarColorWatched= itemWatched? '#f2cc8f' : '#e76f51'
     const SnackbarColorAdded= itemSelected? '#f2cc8f' : '#e76f51'
     const SnackbarColor= SnackbarColorAdded? SnackbarColorAdded: SnackbarColorWatched
-
+    
     return(
         <>
             {(currentUser.role==='admin')? 
@@ -71,7 +74,7 @@ const ButtonToggle :FC<Props> = ({ item }) => {
                 </button> : 
                 <button
                     className="taggle-button"
-                    style={{backgroundColor:SnackbarColor}}
+                    style={{backgroundColor:SnackbarColorWatched}}
                     value="check"
                     onClick={() => {
                         setWatched(!watched);

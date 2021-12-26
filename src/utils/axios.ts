@@ -8,7 +8,7 @@ const apiCinema = axios.create({
 })
 
 const apiFirebase = axios.create({
-    baseURL: 'https://cinema-app-bbb17-default-rtdb.firebaseio.com/'
+    baseURL: 'https://cinema-series-4172d-default-rtdb.firebaseio.com/'
     //baseURL: process.env.REACT_APP_DB_FIREBASE
 });
 

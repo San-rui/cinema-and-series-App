@@ -39,10 +39,9 @@ const useItems = () =>{
         setText('The item was succeeded saved as WATCHED')
         const array = itemSelected?.watched? itemSelected?.watched: [];
 
-            if(array?.includes(currentUser.email) === false){
+            if(array?.includes(currentUser.idDB) === false){
 
-                array?.push(currentUser.email);
-                console.log("el array final", array, currentUser)
+                array?.push(currentUser.idDB);
 
                 const data={...item, watched: array}
                 await dispatch(patchMovieListItem (data, itemSelected?.idDB))
@@ -55,11 +54,11 @@ const useItems = () =>{
         
         const array =itemSelected?.watched? itemSelected?.watched: [];
 
-        if(array?.includes(currentUser.email) === true){
+        if(array?.includes(currentUser.idDB) === true){
 
             setText('The item was succeeded removed from WATCHED')
 
-            const i = array?.indexOf( currentUser.email);
+            const i = array?.indexOf( currentUser.idDB);
             array?.splice( i, 1 );
             const data = {...item, watched: array}
             await dispatch(patchMovieListItem (data, itemSelected?.idDB))

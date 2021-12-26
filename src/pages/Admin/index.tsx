@@ -3,7 +3,7 @@ import { FC} from "react";
 import { Layout } from "../../components/layout";
 import { MovieList} from "../../components/parts"
 import { WithAuth } from "../../hoc/WithAuth";
-import { useMovies } from "../../hooks";
+import { useAuth, useMovies } from "../../hooks";
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
