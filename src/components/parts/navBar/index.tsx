@@ -28,7 +28,9 @@ const NavBar :FC = () =>{
                     <Link to='./series' className='link-nav'>Series</Link>
                     {(role==='admin') && <Link to='./admin' className='link-nav'>Admin</Link>}
                     {(role==='admin') && <Link to='./users' className='link-nav'>Users</Link>}
-                    <Button>Exit</Button>
+                    <Button
+                        onClick={logout}
+                    >Exit</Button>
                 </Box>
             </Box>
             <Box sx={{ display: [display, display,'none','none'], backgroundColor: '#edf2f4', color: 'white', height: '3rem', marginBottom: '2rem'}}>
@@ -47,9 +49,7 @@ const NavBar :FC = () =>{
                     {(role==='admin')&& <Link to='./admin' className='link-nav'>Admin</Link>}
                     {(role==='admin')&&<Link to='./users'>Users</Link>}
                     <Button
-                        onClick={()=>{
-                            logout()
-                        }}
+                        onClick={logout}
                     >Exit</Button>
                 </Box>
             </Box>
