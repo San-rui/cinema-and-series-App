@@ -1,10 +1,11 @@
 import { FC } from 'react';
 
+import './styles.scss'
 
 const Main:FC = ({children}) => {
 
     return (
-            <main>
+            <main className="main">
                 { children }
             </main>
     )

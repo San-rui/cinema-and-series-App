@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import image from '../../../assets/images/image.png'
+
 import StarRating from "../StarRating"
 import { Box, Card, Typography } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,19 +27,29 @@ const CardList :FC<Props> = ({items}) =>{
     return (
         <>
             <Box sx={{
-                display: 'grid',
+                display: ['flex', 'flex', 'grid', 'grid'],
+                flexWrap: 'wrap', 
                 columnGap: 4,
-                rowGap: 4,
-                gridTemplateColumns: 'repeat(4, 1fr)',
-                width: "100%"
+                gridTemplateColumns: ['repeat 1','repeat(2, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)'],
+                width: "100%",
+                justifyContent: 'center',
             }}>
                 {items?.map(item =>{
 
-                    const srcImage = (!item.poster_path)? "https://cdn4.vectorstock.com/i/1000x1000/39/98/error-404-page-not-found-vector-14463998.jpg": `http://image.tmdb.org/t/p/w500${item.poster_path}`
+                    const srcImage = (!item.poster_path)? `${image}`: `http://image.tmdb.org/t/p/w500${item.poster_path}`
             
                     return(
                         <div id={`${item.id}`}>
-                            <Card className={classes.card} sx={{ maxWidth: 307, maxHeight: 620, width: "19vw", height:"33rem", display: 'flex', flexDirection: 'column', justifyContent:"space-between", padding: "1rem", borderRadius: '1rem'}} variant="outlined">
+                            <Card className={classes.card} sx={{ 
+                                width: ['80vw', '40vw', '30vw', '17rem' ],
+                                height: ['38rem', '40rem', '40rem', '33rem'], 
+                                display: 'flex', 
+                                flexDirection: 'column', 
+                                justifyContent:"space-between", 
+                                padding: "1rem", 
+                                borderRadius: '1rem', 
+                                marginBottom:'1.5rem'}} 
+                                variant="outlined">
                                 <img
                                     src={srcImage}
                                     alt={item.original_title}
