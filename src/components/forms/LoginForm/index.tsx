@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { validationSchema } from "./validation-schema";
 import { defaultValues } from "./default-values";
+import Box from '@mui/material/Box';
 
 import './styles.scss'
 import { useAuth } from "../../../hooks/useAuth";
@@ -32,7 +33,7 @@ const LoginForm: FC = () => {
     }
 
     return(
-        <div className="login-form">
+        <Box sx={{width: ['100%', '80%', '80%', '50%' ]}} className="login-form">
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                     <div className='title-login-form'>
                         <h2>Login</h2>
@@ -40,6 +41,7 @@ const LoginForm: FC = () => {
                     <div className='container-input'>
                         <label htmlFor="email">Email</label>
                         <input 
+                            className='input'
                             id="email" 
                             type="text" 
                             placeholder="Enter your email"
@@ -49,7 +51,8 @@ const LoginForm: FC = () => {
                     </div>
                     <div className='container-input'>
                         <label htmlFor="password">Password</label>
-                        <input 
+                        <input
+                            className='input'
                             id="password" 
                             type="password" 
                             placeholder="Enter your password"
@@ -60,7 +63,7 @@ const LoginForm: FC = () => {
                     <button type="submit">Send</button>
                 </form>
                 
-            </div>
+            </Box>
     )
 
 };

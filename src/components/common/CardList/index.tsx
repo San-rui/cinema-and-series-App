@@ -9,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Item } from "../../../types";
 import { ButtonToggle } from "../index"
 
+import './styles.scss'
+
 
 const useStyle = makeStyles({
     card:{ 
@@ -54,6 +56,7 @@ const CardList :FC<Props> = ({items}) =>{
                                     src={srcImage}
                                     alt={item.original_title}
                                     loading="lazy"
+                                    className="image"
                                 />
                                 <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", }} color="text.secondary" gutterBottom>
                                     {item.original_title}
