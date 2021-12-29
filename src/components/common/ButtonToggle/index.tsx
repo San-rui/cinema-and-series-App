@@ -34,8 +34,6 @@ const ButtonToggle :FC<Props> = ({ item }) => {
     const itemWatched= itemSelected?.watched?.includes(currentUser.idDB)
 
     const value = itemSelected? true : false
-    
-    //console.log(value)
 
     const [selected, setSelected] = useState<boolean>(value);
     const [watched, setWatched] = useState(false);
@@ -54,7 +52,6 @@ const ButtonToggle :FC<Props> = ({ item }) => {
 
     const SnackbarColorWatched= itemWatched? '#f2cc8f' : '#e76f51'
     const SnackbarColorAdded= itemSelected? '#f2cc8f' : '#e76f51'
-    const SnackbarColor= SnackbarColorAdded? SnackbarColorAdded: SnackbarColorWatched
     
     return(
         <>
@@ -62,7 +59,7 @@ const ButtonToggle :FC<Props> = ({ item }) => {
                 <button
                     className="taggle-button"
                     value="check"
-                    style={{backgroundColor:SnackbarColor}}
+                    style={{backgroundColor:SnackbarColorAdded}}
                     onClick={() => {
                         setSelected(!selected);
                         handleClick()
@@ -88,11 +85,19 @@ const ButtonToggle :FC<Props> = ({ item }) => {
                     {itemWatched? 'NOT WATCHED':'WATCHED'}
                 </button>
             }
+            {(currentUser.role==='admin')? 
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} >
-                <Alert onClose={handleClose} severity="success" sx={{ width: '100%', backgroundColor:SnackbarColor}}>
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%', backgroundColor:SnackbarColorAdded}}>
+                    {text}
+                </Alert>
+            </Snackbar>: 
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} >
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%', backgroundColor: SnackbarColorWatched}}>
                     {text}
                 </Alert>
             </Snackbar>
+            }            
+
         </>
     )
 }
