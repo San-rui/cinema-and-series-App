@@ -39,7 +39,7 @@ const useItems = () =>{
         setText('The item was succeeded saved as WATCHED')
         const array = itemSelected?.watched? itemSelected?.watched: [];
 
-            if(array?.includes(currentUser.idDB) === false){
+            if(!array?.includes(currentUser.idDB)){
 
                 array?.push(currentUser.idDB);
 

@@ -28,7 +28,7 @@ const useAuth = ()  => {
     useEffect ( () => {
         loginWithToken()
         
-    },[])
+    },[users])
 
     const createUserToken = async (user: User): Promise<string | null> => {
         try {
@@ -75,6 +75,8 @@ const useAuth = ()  => {
 
     const loginWithToken = async () => {
         let user;
+
+        
         try {
 
             if (tokenStorage) {

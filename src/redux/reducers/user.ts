@@ -11,13 +11,13 @@ export const userReducer = (state=initialState, action: any) =>{
             }
 
         case types.userOk:
-            return {
+            return action.payload?{
                 email: action.payload.email,
                 role: action.payload.role,
                 name: action.payload.name,
                 idDB: action.payload.idDB,
                 sessionToken: action.payload.sessionToken,
-            }
+            }: state
 
         case types.usersError:
             return {
