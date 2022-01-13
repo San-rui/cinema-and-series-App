@@ -13,7 +13,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Admin :FC= () =>{
 
-    const { items, setPage, setSearch} = useMovies();
+    const { items,  setSearch} = useMovies();
 
     const handleChange =(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>)=>{
         
@@ -38,7 +38,7 @@ const Admin :FC= () =>{
                     </IconButton>
                     <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                 </Paper>
-                <MovieList items={items.results} setPage={setPage} pageNumber={items.total_pages}/>
+                <MovieList items={items.results} pageNumber={items.total_pages}/>
                 
             </div>
         </Layout>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { processCinemaList } from "../../redux/actions/cinema";
 import { getMovieAction } from "../../redux/actions/dbCinema";
 import { Item, Store, TotalResults} from "../../types";
@@ -11,9 +12,15 @@ type CinemaStore={
     }
 }
 
+type ParamsType = {
+    page: string,
+};
+
 const useMovies = () =>{
 
-    const [page, setPage]= useState(1)
+    const { page } = useParams<ParamsType>();
+    const pageNumber= Number(page) 
+
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
 
@@ -26,13 +33,12 @@ const useMovies = () =>{
 
     useEffect ( () => {
 
-        dispatch(processCinemaList(page, search))
+        dispatch(processCinemaList(pageNumber, search))
+        console.log(typeof page, pageNumber)
 
     },[dispatch, page, search])
 
-    return { items, 
-            page, 
-            setPage, 
+    return { items,  
             setSearch, 
             dataMovieFb
     }

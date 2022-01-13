@@ -2,7 +2,7 @@ import { TotalResults } from "../../types";
 import { apiCinema } from "../../utils/axios"
 import { types } from "../types";
 
-export const processCinemaList = (pageNumber:number, search:string) =>{
+export const processCinemaList = (pageNumber:number=1, search:string) =>{
 
     return async (dispatch: any) => {
 

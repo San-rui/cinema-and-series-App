@@ -26,7 +26,7 @@ const NavBar :FC = () =>{
                     <Link to='./' className='link-nav'>Home</Link>
                     <Link to='./movies' className='link-nav'>Movies</Link>
                     <Link to='./series' className='link-nav'>Series</Link>
-                    {(role==='admin') && <Link to='./admin' className='link-nav'>Admin</Link>}
+                    {(role==='admin') && <Link to='./admin/1' className='link-nav'>Admin</Link>}
                     {(role==='admin') && <Link to='./users' className='link-nav'>Users</Link>}
                     <Button
                         onClick={logout}
@@ -46,7 +46,7 @@ const NavBar :FC = () =>{
                     <Link to='./'>Home</Link>
                     <Link to='./movies'>Movies</Link>
                     <Link to='./series'>Series</Link>
-                    {(role==='admin')&& <Link to='./admin' className='link-nav'>Admin</Link>}
+                    {(role==='admin')&& <Link to='./admin/1' className='link-nav'>Admin</Link>}
                     {(role==='admin')&&<Link to='./users'>Users</Link>}
                     <Button
                         onClick={logout}
