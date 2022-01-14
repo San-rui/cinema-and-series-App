@@ -3,7 +3,7 @@ import { FC} from "react";
 import { Layout } from "../../components/layout";
 import { MovieList} from "../../components/parts"
 import { WithAuth } from "../../hoc/WithAuth";
-import { useAuth, useMovies } from "../../hooks";
+import {  useMovies } from "../../hooks";
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -25,7 +25,8 @@ const Admin :FC= () =>{
             <div className="admin">
                 <Paper
                     component="form"
-                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '2.5rem', marginBottom: '1rem', borderRadius: '1.2rem' }}
+                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '2.5rem', marginBottom: '3rem', marginTop: '2rem',borderRadius: '1.2rem' }}
+                    className="input-search"
                 >
                     <InputBase
                         sx={{ ml: 1, flex: 1 }}
@@ -33,7 +34,7 @@ const Admin :FC= () =>{
                         inputProps={{ 'aria-label': 'search google maps' }}
                         onChange={handleChange}
                     />
-                    <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                    <IconButton type="submit" sx={{ p: '15px' }} aria-label="search">
                         <SearchIcon />
                     </IconButton>
                     <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

@@ -1,5 +1,11 @@
+@import '../../../scss/variables.scss';
+
 .image{
     border-radius: 0.2rem;
+
     // height: 75%;
     // width: auto;
+    .color-text{
+        color:$color-white;
+    }
 }

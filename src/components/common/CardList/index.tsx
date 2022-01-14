@@ -14,7 +14,9 @@ import './styles.scss'
 
 const useStyle = makeStyles({
     card:{ 
-        backgroundColor: '#81b29a',
+        backgroundColor: '#041738',
+        border:'1px solid #ff0054',
+        color:'#ffffff'
     }
 })
 
@@ -58,10 +60,10 @@ const CardList :FC<Props> = ({items}) =>{
                                     loading="lazy"
                                     className="image"
                                 />
-                                <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", }} color="text.secondary" gutterBottom>
+                                <Typography className="color-text" sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", }}  gutterBottom>
                                     {item.original_title}
                                 </Typography>
-                                <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif",  }} color="text.secondary" gutterBottom>
+                                <Typography className="color-text" sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif",  }} gutterBottom>
                                     {item.vote_average}
                                 </Typography>
                                 <StarRating stars={item.vote_average} />
