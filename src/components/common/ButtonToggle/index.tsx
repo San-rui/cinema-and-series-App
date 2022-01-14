@@ -50,8 +50,8 @@ const ButtonToggle :FC<Props> = ({ item }) => {
         setOpen(true);
     };
 
-    const SnackbarColorWatched= itemWatched? '#f2cc8f' : '#e76f51'
-    const SnackbarColorAdded= itemSelected? '#f2cc8f' : '#e76f51'
+    const SnackbarColorWatched= itemWatched? '#e59500' : '#ff0054'
+    const SnackbarColorAdded= itemSelected? '#e59500' : '#ff0054'
     
     return(
         <>

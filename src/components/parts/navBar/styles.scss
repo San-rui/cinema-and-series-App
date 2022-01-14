@@ -1,8 +1,38 @@
-.navBar{
-    padding:1rem;
+@import '../../../scss/variables.scss';
 
-    .link-nav{
+.navBar{
+    padding:0.5rem;
+    font-size: 1rem;
+    border-bottom: 1px solid $secondary;
+
+    .name-app{
+        color: $secondary;
+        font-size: 2rem;
+        margin-left: 1rem;
+        letter-spacing: 1rem;
+        text-shadow:
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 20px #fff,
+            0 0 40px #0ff,
+            0 0 80px #0ff,
+            0 0 90px #0ff,
+            0 0 100px #0ff,
+            0 0 150px #0ff;
+            
+    }
+
+    .link-nav {
         text-decoration: none;
         margin:1rem;
+        color: $color-white;
+    }
+
+    .nav-button{
+        margin:1rem;
+        color: $color-white;
+        border:none;
+        font-size: 1rem;
+        background-color: transparent;
     }
 }

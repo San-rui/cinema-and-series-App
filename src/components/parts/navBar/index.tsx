@@ -20,17 +20,19 @@ const NavBar :FC = () =>{
 
     return (
         <>
-            <Box className="navBar" sx={{ display: ['none','none','flex','flex'], justifyContent:'space-between', backgroundColor: '#f4f1de', marginBottom: '2rem'}}>
-                <Typography sx={{color: "black", fontSize:"2rem"}}>Cinema</Typography>
+            <Box className="navBar" sx={{ display: ['none','none','flex','flex'], justifyContent:'space-between', marginBottom: '2rem'}}>
+                <Typography className='name-app'>
+                    CINEMA
+                </Typography>
                 <Box>
                     <Link to='./' className='link-nav'>Home</Link>
                     <Link to='./movies' className='link-nav'>Movies</Link>
                     <Link to='./series' className='link-nav'>Series</Link>
                     {(role==='admin') && <Link to='./admin/1' className='link-nav'>Admin</Link>}
                     {(role==='admin') && <Link to='./users' className='link-nav'>Users</Link>}
-                    <Button
+                    <button className='nav-button'
                         onClick={logout}
-                    >Exit</Button>
+                    >Exit</button>
                 </Box>
             </Box>
             <Box sx={{ display: [display, display,'none','none'], backgroundColor: '#edf2f4', color: 'white', height: '3rem', marginBottom: '2rem'}}>
@@ -48,9 +50,9 @@ const NavBar :FC = () =>{
                     <Link to='./series'>Series</Link>
                     {(role==='admin')&& <Link to='./admin/1' className='link-nav'>Admin</Link>}
                     {(role==='admin')&&<Link to='./users'>Users</Link>}
-                    <Button
+                    <button className='nav-button'
                         onClick={logout}
-                    >Exit</Button>
+                    >Exit</button>
                 </Box>
             </Box>
         </>

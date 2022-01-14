@@ -1,12 +1,13 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
 import  Pagination  from '@material-ui/lab/Pagination'
 
 import './styles.scss'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 type Props={
     page:number, 
 }
+
 
 const PaginationComponent: FC <Props> = ({ page }) => {
 

@@ -1,3 +1,6 @@
+@import '../../../scss/variables.scss';
+
 .main{
-    //padding: 2rem;
+    background-color:$primary;
+    padding: 1rem;
 }
