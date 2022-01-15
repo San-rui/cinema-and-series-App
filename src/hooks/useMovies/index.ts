@@ -17,10 +17,10 @@ type ParamsType = {
 };
 
 const useMovies = () =>{
-
-    const { page } = useParams<ParamsType>();
-    const pageNumber= Number(page) 
-
+    
+    const params = new URLSearchParams(window.location.search)
+    const pageNumber= parseInt(params.get('page')!) || 1
+    
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
 
@@ -33,10 +33,10 @@ const useMovies = () =>{
 
     useEffect ( () => {
 
+        
         dispatch(processCinemaList(pageNumber, search))
-        console.log(typeof page, pageNumber)
 
-    },[dispatch, page, search])
+    },[dispatch, pageNumber, search])
 
     return { items,  
             setSearch, 

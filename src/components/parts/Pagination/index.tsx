@@ -14,7 +14,7 @@ const PaginationComponent: FC <Props> = ({ page }) => {
     const { push } = useHistory();
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-        push(`/admin/${value}`)
+        push(`/admin?page=${value}`)
     };
 
     return (
