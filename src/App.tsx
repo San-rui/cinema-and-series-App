@@ -17,7 +17,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/admin/:page" component={Admin} />
+          <Route path="/admin" component={Admin} />
           <Route path="/movies" component={Movies} />
           <Route path="/series" component={Series} />
           <Route path="/login" component={Login} />

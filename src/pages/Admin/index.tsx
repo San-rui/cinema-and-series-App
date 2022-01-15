@@ -40,7 +40,6 @@ const Admin :FC= () =>{
                     <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                 </Paper>
                 <MovieList items={items.results} pageNumber={items.total_pages}/>
-                
             </div>
         </Layout>
     )

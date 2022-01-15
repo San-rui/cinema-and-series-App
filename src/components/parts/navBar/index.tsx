@@ -25,11 +25,11 @@ const NavBar :FC = () =>{
                     CINEMA
                 </Typography>
                 <Box>
-                    <Link to='./' className='link-nav'>Home</Link>
-                    <Link to='./movies' className='link-nav'>Movies</Link>
-                    <Link to='./series' className='link-nav'>Series</Link>
-                    {(role==='admin') && <Link to='./admin/1' className='link-nav'>Admin</Link>}
-                    {(role==='admin') && <Link to='./users' className='link-nav'>Users</Link>}
+                    <Link to='/' className='link-nav'>Home</Link>
+                    <Link to='/movies' className='link-nav'>Movies</Link>
+                    <Link to='/series' className='link-nav'>Series</Link>
+                    {(role==='admin') && <Link to='/admin?page=1' className='link-nav'>Admin</Link>}
+                    {(role==='admin') && <Link to='/users' className='link-nav'>Users</Link>}
                     <button className='nav-button'
                         onClick={logout}
                     >Exit</button>
@@ -45,11 +45,11 @@ const NavBar :FC = () =>{
                     <CloseIcon />
                 </button>
                 <Box sx={{ display:[open, open, 'none', 'none'], flexDirection:'column', backgroundColor: 'white', zIndex: 20, top:0,}}>
-                    <Link to='./'>Home</Link>
-                    <Link to='./movies'>Movies</Link>
-                    <Link to='./series'>Series</Link>
-                    {(role==='admin')&& <Link to='./admin/1' className='link-nav'>Admin</Link>}
-                    {(role==='admin')&&<Link to='./users'>Users</Link>}
+                    <Link to='/'>Home</Link>
+                    <Link to='/movies'>Movies</Link>
+                    <Link to='/series'>Series</Link>
+                    {(role==='admin')&& <Link to='/admin?page=1' className='link-nav'>Admin</Link>}
+                    {(role==='admin')&&<Link to='/users'>Users</Link>}
                     <button className='nav-button'
                         onClick={logout}
                     >Exit</button>
