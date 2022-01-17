@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { signup } from "../../api/firebase";
 
 import { User } from "../../types";
 import { apiFirebase} from "../../utils";
@@ -101,21 +100,10 @@ const useAuth = ()  => {
         dispatch(okUser(undefined))
     };
 
-    const signUp = async(data: Omit<User, 'id'>) => {
-        try {
-            await signup(data);
-            push('/login')
-            
-        } catch (err) {
-            console.log(err);
-            }
-    };
-
     return { isUserLogged: !!(localStorage.getItem('user-token')),  
             login, 
             loginWithToken, 
             logout, 
-            signUp, 
             hasUserLoggedIn, 
             currentUser  
     }

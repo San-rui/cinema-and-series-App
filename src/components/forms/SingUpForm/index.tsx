@@ -6,7 +6,7 @@ import { defaultValues } from "./default-values";
 
 import './styles.scss'
 import { User } from "../../../types";
-import { useAuth } from "../../../hooks/useAuth";
+import { useUsers } from "../../../hooks";
 
 type Props = {
     id?: string,
@@ -15,7 +15,7 @@ type Props = {
 
 const SingupForm: FC <Props> = ({ id, className}) => {
 
-    const { signUp } = useAuth();
+    const { addUser } =useUsers() ;
 
     const { register, 
         formState: { errors },
@@ -26,11 +26,7 @@ const SingupForm: FC <Props> = ({ id, className}) => {
     })
 
     const onSubmit = async(data: Omit<User, 'id'>) => {
-        try {
-            await signUp(data)
-        } catch (e) {
-
-        }
+        addUser(data) 
 
     }
 

@@ -37,7 +37,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const UsersTable: FC = () => {
 
-    const { users } = useUsers();
+    const { users, removeUserfromList } = useUsers();
+
+    const deleteUser =(id:string)=>{
+        console.log('delete user', id)
+        removeUserfromList(id)
+    }
 
     return (
         <TableContainer component={Paper}>
@@ -61,7 +66,7 @@ const UsersTable: FC = () => {
                     <StyledTableCell align="right">{user.birthday}</StyledTableCell>
                     <StyledTableCell align="right">{user.role}</StyledTableCell>
                     <StyledTableCell align="right">
-                        <IconButton aria-label="delete" size="large">
+                        <IconButton aria-label="delete" size="large" onClick={()=>deleteUser(user.idDB)}>
                             <DeleteIcon fontSize="inherit" />
                         </IconButton>
                     </StyledTableCell>
