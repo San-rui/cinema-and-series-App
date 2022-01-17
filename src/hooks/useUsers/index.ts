@@ -1,12 +1,14 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { addUserAction, getUsersAction } from "../../redux/actions/usersList";
+import { useHistory } from "react-router-dom";
+import { addUserAction, getUsersAction, deleteUserAction } from "../../redux/actions/usersList";
 import { AddUserType, Store, User } from "../../types"
 
 const useUsers = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const { push }= useHistory();
 
     const users = useSelector((state: Store<User>) => state.users);
 
@@ -14,16 +16,22 @@ const useUsers = () => {
         dispatch(getUsersAction());
     }, []);
 
-    const addUser = async (datos: AddUserType) => {
-        await dispatch(addUserAction(datos));
+    const addUser = async (data: AddUserType) => {
+        await dispatch(addUserAction(data));
         getUsers();
+        push('/login')
     };
 
     const getUsers = async () => {
         dispatch(getUsersAction());
     };
 
-    return { users, addUser };
+    const removeUserfromList = (id: string) =>{
+        dispatch(deleteUserAction(id))
+        console.log('hook', id)
+    }
+
+    return { users, addUser, removeUserfromList };
 
 }
 

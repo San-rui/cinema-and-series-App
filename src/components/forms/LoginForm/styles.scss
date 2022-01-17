@@ -30,4 +30,21 @@
             margin-top:0.5rem;
         }
     }
+
+    .button-container{
+        display: flex;
+        justify-content: center;
+    }
+
+    .link-container{
+        display: flex;
+        justify-content: flex-end;
+
+        .link-login-form{
+            text-decoration: none;
+            color:$color-white;
+        }
+    }
+
+    
 }

@@ -17,6 +17,23 @@ export const getUsersAction = () => {
     };
 };
 
+export const deleteUserAction = (id: string) => {
+    return async (dispatch: any) => {
+        dispatch(getUsersStart());
+
+        try {
+            console.log('redux', id)
+            await apiFirebase.delete(`/users/${id}.json`);
+
+            const response = await apiFirebase.get("/users.json");
+            dispatch(getUsersSuccess(mapToArray(response.data)));
+            
+        } catch (err) {
+            dispatch(getUsersError(err));
+        }
+    };
+};
+
 const getUsersStart = () => ({
     type: types.getUsersStart,
     payload: [],
@@ -44,5 +61,6 @@ export const addUserAction = (user: AddUserType) => {
         }
     };
 };
+
 
 

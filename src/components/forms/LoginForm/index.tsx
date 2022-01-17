@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 
 import './styles.scss'
 import { useAuth } from "../../../hooks/useAuth";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const LoginForm: FC = () => {
 
@@ -60,7 +60,13 @@ const LoginForm: FC = () => {
                         />
                         {errors.password?.message}
                     </div>
-                    <button type="submit">Send</button>
+                    <div className='button-container'>
+                        <button type="submit">Send</button>
+                    </div>
+                    <div className='link-container'>
+                        <Link to='/singUp' className='link-login-form'>Register</Link>
+                    </div>
+                    
                 </form>
                 
             </Box>
