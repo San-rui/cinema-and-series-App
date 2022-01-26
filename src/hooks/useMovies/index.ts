@@ -3,7 +3,8 @@ import {  useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { processCinemaList } from "../../redux/actions/cinema";
 import { getMovieAction } from "../../redux/actions/dbCinema";
-import { Item, Store, TotalResults} from "../../types";
+import { processVideos } from "../../redux/actions/videos";
+import { Item, Store, TotalResults, Video} from "../../types";
 
 type CinemaStore={
     cinema:{
@@ -12,19 +13,24 @@ type CinemaStore={
     }
 }
 
-type ParamsType = {
-    page: string,
-};
+type VideosStore={
+    videos:{
+        videos: Video[],
+        error: {errorCode:string }|null,
+    }
+}
 
 const useMovies = () =>{
     
-    const params = new URLSearchParams(window.location.search)
-    const pageNumber= parseInt(params.get('page')!) || 1
+    const params = new URLSearchParams(window.location.search);
+    const pageNumber= parseInt(params.get('page')!) || 1;
+    const { id } = useParams<{id:string}>()
     
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
 
     const  { items }  = useSelector((state: CinemaStore) => state.cinema)
+    const  { videos }  = useSelector((state: VideosStore) => state.videos)
     const dataMovieFb = useSelector((state: Store<Item>) => state.cinemaFb);
 
     useEffect(() => {
@@ -32,15 +38,24 @@ const useMovies = () =>{
     }, []);
 
     useEffect ( () => {
-
         
         dispatch(processCinemaList(pageNumber, search))
 
     },[dispatch, pageNumber, search])
 
+    useEffect ( () => {
+
+        if(id){
+            dispatch(processVideos(Number(id)))
+        }
+
+    },[id])
+
+
     return { items,  
             setSearch, 
-            dataMovieFb
+            dataMovieFb,
+            videos 
     }
 
 }

@@ -5,6 +5,7 @@ import { usersReducer } from './reducers/usersList';
 import { userReducer } from './reducers/user';
 import { cinemaReducer } from './reducers/cinema';
 import { CinemaFbReducer } from './reducers/dbCinema';
+import { VideosReducer } from './reducers/videos';
 
 declare global {
     interface Window {
@@ -21,7 +22,8 @@ const reducers = combineReducers({
     users: usersReducer,
     user: userReducer,
     cinema: cinemaReducer,
-    cinemaFb: CinemaFbReducer 
+    cinemaFb: CinemaFbReducer ,
+    videos: VideosReducer ,
 })
 
 export const store = createStore(reducers, 
