@@ -1,11 +1,21 @@
 @import '../../../scss/variables.scss';
 
-.image{
-    border-radius: 0.2rem;
+.button-detail{
+    height:100%;
+    cursor: pointer;
+    background-color: transparent;
+    border:none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color:$color-white;
 
-    // height: 75%;
-    // width: auto;
-    .color-text{
-        color:$color-white;
+    .image{
+        border-radius: 0.2rem;
+        width: 100%;
+    
+        
     }
+
 }

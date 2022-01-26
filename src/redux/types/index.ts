@@ -31,4 +31,8 @@ export const types  = {
     movieListItemSuccess:'movieListItemSuccess',
     movieListItemError:'movieListItemError',
 
+    getVideosStart: 'getVideosStart',
+    getVideosSuccess:'getVideosSuccess',
+    getVideosError:'getVideosError',
+
 }

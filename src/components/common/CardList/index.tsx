@@ -10,6 +10,7 @@ import { Item } from "../../../types";
 import { ButtonToggle } from "../index"
 
 import './styles.scss'
+import { useHistory } from "react-router-dom";
 
 
 const useStyle = makeStyles({
@@ -26,7 +27,13 @@ type Props={
 
 const CardList :FC<Props> = ({items}) =>{
 
+    const { push } = useHistory();
     const classes = useStyle()
+
+    const details =( data:number )=>{
+
+        push(`/details/${data}`)
+    }
 
     return (
         <>
@@ -41,33 +48,35 @@ const CardList :FC<Props> = ({items}) =>{
                 {items?.map(item =>{
 
                     const srcImage = (!item.poster_path)? `${image}`: `http://image.tmdb.org/t/p/w500${item.poster_path}`
-            
+                    
                     return(
                         <div id={`${item.id}`}>
                             <Card className={classes.card} sx={{ 
-                                width: ['80vw', '40vw', '30vw', '17rem' ],
-                                height: ['38rem', '40rem', '40rem', '33rem'], 
-                                display: 'flex', 
-                                flexDirection: 'column', 
-                                justifyContent:"space-between", 
-                                padding: "1rem", 
-                                borderRadius: '1rem', 
-                                marginBottom:'1.5rem'}} 
-                                variant="outlined">
-                                <img
-                                    src={srcImage}
-                                    alt={item.original_title}
-                                    loading="lazy"
-                                    className="image"
-                                />
-                                <Typography className="color-text" sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", }}  gutterBottom>
-                                    {item.original_title}
-                                </Typography>
-                                <Typography className="color-text" sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif",  }} gutterBottom>
-                                    {item.vote_average}
-                                </Typography>
-                                <StarRating stars={item.vote_average} />
-                                <ButtonToggle item={item}/>
+                                    width: ['80vw', '40vw', '30vw', '17rem' ],
+                                    height: ['38rem', '40rem', '40rem', '33rem'], 
+                                    padding: '1rem',
+                                    borderRadius: '1rem', 
+                                    marginBottom:'1.5rem'
+                                }} 
+                                variant="outlined"
+                                >
+                                <div className='button-detail' onClick={()=>details(item.id)}>
+                                    <img
+                                        src={srcImage}
+                                        alt={item.original_title}
+                                        loading="lazy"
+                                        className="image"
+                                    />
+                                    <Typography  sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", }}>
+                                        {item.original_title}
+                                    </Typography>
+                                    <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif",  }}>
+                                        {item.vote_average}
+                                    </Typography>
+                                    <StarRating stars={item.vote_average} />
+                                    <ButtonToggle item={item}/>
+                                </div>
+                                
                             </Card>
                         </div>
                     )

@@ -60,7 +60,8 @@ const ButtonToggle :FC<Props> = ({ item }) => {
                     className="taggle-button"
                     value="check"
                     style={{backgroundColor:SnackbarColorAdded}}
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation()
                         setSelected(!selected);
                         handleClick()
                         !selected? addItem(itemSelected, item) : removeItem(itemSelected)
@@ -73,7 +74,8 @@ const ButtonToggle :FC<Props> = ({ item }) => {
                     className="taggle-button"
                     style={{backgroundColor:SnackbarColorWatched}}
                     value="check"
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation()
                         setWatched(!watched);
                         handleClick()
                         console.log(watched)

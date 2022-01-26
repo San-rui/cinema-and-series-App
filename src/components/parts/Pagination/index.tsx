@@ -8,7 +8,6 @@ type Props={
     page:number, 
 }
 
-
 const PaginationComponent: FC <Props> = ({ page }) => {
 
     const { push } = useHistory();
