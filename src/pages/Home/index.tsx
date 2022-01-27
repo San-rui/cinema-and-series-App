@@ -14,11 +14,11 @@ const Home :FC= () =>{
     return(
         <Layout>
             <div className="home">
-            <div className='hello-text'>
-                <span>Hola </span>
-                <span>{currentUser.name}</span>
-            </div>
-            <CardList items={dataMovieFb.items}/>
+                <div className='hello-text'>
+                    <span>Hola </span>
+                    <span>{currentUser.name}</span>
+                </div>
+                <CardList items={dataMovieFb.items}/>
             </div>
         </Layout>
     )

@@ -18,6 +18,7 @@ export type Item = {
     id: number;
     idDB?: string;
     original_title?: string;
+    original_name?:string;
     original_language?: string;
     title: string;
     backdrop_path?: string | null;

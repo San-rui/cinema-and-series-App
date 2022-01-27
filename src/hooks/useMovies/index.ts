@@ -32,6 +32,7 @@ const useMovies = () =>{
     const  { items }  = useSelector((state: CinemaStore) => state.cinema)
     const  { videos }  = useSelector((state: VideosStore) => state.videos)
     const dataMovieFb = useSelector((state: Store<Item>) => state.cinemaFb);
+    const [itemId, setItemId] = useState<Item>()
 
     useEffect(() => {
         dispatch(getMovieAction());
@@ -46,16 +47,22 @@ const useMovies = () =>{
     useEffect ( () => {
 
         if(id){
+            console.log(id)
             dispatch(processVideos(Number(id)))
+            const itemDetail= items.results?.find(item => (item.id).toString() === id)
+            setItemId(itemDetail)
+            console.log("item", itemId)
         }
 
-    },[id])
+    },[])
+
 
 
     return { items,  
             setSearch, 
             dataMovieFb,
-            videos 
+            videos,
+            itemId
     }
 
 }

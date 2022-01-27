@@ -1,0 +1,42 @@
+.details{
+
+    display: flex;
+    justify-content: center;
+    padding:1rem;
+    border-radius: 1rem;
+
+
+    .details-videos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 1rem;
+
+        .text-title{
+            font-size: 3rem;
+        }
+
+        .text-overview{
+            margin: 3rem 0;
+        }
+
+        .container-videos{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+
+            justify-content:center;
+
+            .video{
+                margin: 0.5rem;
+            }
+
+        }
+
+    }
+
+    .image{
+        width: 100%;
+        height: auto;
+    }
+}

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import './style.scss'
+import './styles.scss'
 
 type Props ={
     stars: number
