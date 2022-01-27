@@ -68,7 +68,7 @@ const CardList :FC<Props> = ({items}) =>{
                                         className="image"
                                     />
                                     <Typography  sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif", }}>
-                                        {item.original_title}
+                                        {item.original_title? item.original_title : item.original_name}
                                     </Typography>
                                     <Typography sx={{ fontSize: 14, fontFamily: "'Quicksand', sans-serif",  }}>
                                         {item.vote_average}

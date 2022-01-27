@@ -4,13 +4,17 @@ import { Layout } from "../../components/layout";
 import { WithAuth } from "../../hoc/WithAuth";
 import { useMovies } from "../../hooks";
 
+import './styles.scss'
+
 const Details :FC= () =>{
 
     const { videos } = useMovies()
     
     return(
         <Layout>
-            <CardDetail videos={videos}/>
+            <div className="details">
+                <CardDetail videos={videos}/>
+            </div>
         </Layout>
     )
 }

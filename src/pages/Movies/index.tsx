@@ -4,6 +4,8 @@ import { Layout } from "../../components/layout";
 import { WithAuth } from "../../hoc/WithAuth";
 import { useMovies } from "../../hooks";
 
+import './styles.scss'
+
 const Movies :FC= () =>{
 
     const { dataMovieFb } = useMovies()
@@ -12,8 +14,8 @@ const Movies :FC= () =>{
 
     return(
         <Layout>
-            <div className="home">
-            <CardList items={movies}/>
+            <div className="movie">
+                <CardList items={movies}/>
             </div>
         </Layout>
     )
