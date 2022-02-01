@@ -6,6 +6,8 @@ import { Video } from "../../../types";
 
 import image from '../../../assets/images/image.png'
 import './styles.scss'
+import { useParams } from "react-router-dom";
+import { processVideos } from "../../../redux/actions/videos";
 
 
 type Props={
@@ -14,10 +16,15 @@ type Props={
 
 const CardDetail :FC<Props> = ({videos}) =>{
 
-    const { itemId } = useMovies()
-    const srcImage = (!itemId?.poster_path)? `${image}`: `http://image.tmdb.org/t/p/w500${itemId.poster_path}`
+    const { id } = useParams<{id:string}>();
+    const { items, dataMovieFb } = useMovies();
 
-    console.log(itemId?.original_title? itemId.original_title : itemId?.original_name)
+    const itemId= items.results?.find(item => (item.id).toString() === id);
+    const itemFromFB= dataMovieFb.items.find(item => (item.id).toString() === id);
+
+
+    const item = (itemId)? itemId : itemFromFB
+    const srcImage = (!item?.poster_path)? `${image}`: `http://image.tmdb.org/t/p/w500${item.poster_path}`
 
     return (
         <Box className="details" sx={{ 
@@ -33,35 +40,40 @@ const CardDetail :FC<Props> = ({videos}) =>{
                 <Box className="details-videos" sx={{ 
                     width: ['100%', '100%', '50%', '50%'], 
                     }}>
-                    <h2 className="text-title">{itemId?.original_title? itemId.original_title : itemId?.original_name}</h2>
-                    <p className="text-overview">{itemId?.overview}</p>
+                    <h2 className="text-title">{item?.original_title? item.original_title : item?.original_name}</h2>
+                    <p className="text-overview">{item?.overview}</p>
+                    <div className="container-text">
+                        <p>{
+                            item?.release_date? 
+                            <span>Release date: {item?.release_date}</span> :
+                            <span>First air date: {item?.first_air_date}</span>
+                            }
+                        </p>
+                        <p>Language: { item?.original_language }</p>
+                        <h3 className="trailers">Trailers</h3>
+                    </div>
                     <div className="container-videos">
                         {(videos.length >0) && videos?.map((video) => (
-                            <Box className="video" sx={{ 
-                                width: ['100%','100%','100%', '45%'],
-                                //maxWidth: '25rem',
-                                minWidth: '10rem'
-                                }}>
-                                <iframe
-                                    width='100%'
-                                    height={videos.length === 1 ? 330 : 200}
-                                    src={`https://www.youtube.com/embed/${video.key}`}
-                                    title="YouTube video player"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
-                            </Box>
+                            <iframe
+                                id={`${video.id}`}
+                                className="video"
+                                width={videos.length === 1 ? '100%' : '45%'}
+                                height={videos.length === 1 ? 330 : 200}
+                                src={`https://www.youtube.com/embed/${video.key}`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
                         ))}
                     </div>
-
                 </Box>
                 <Box sx={{ 
                     width: ['100%', '100%', '50%', '50%'], 
                     }}>
                     <img
                         src={srcImage}
-                        alt={itemId?.original_title? itemId.original_title : itemId?.original_name}
+                        alt={item?.original_title? item.original_title : item?.original_name}
                         loading="lazy"
                         className="image"
                     />
@@ -71,3 +83,7 @@ const CardDetail :FC<Props> = ({videos}) =>{
 }
 
 export { CardDetail }
+
+function dispatch(arg0: (dispatch: any) => Promise<void>) {
+    throw new Error("Function not implemented.");
+}
