@@ -17,11 +17,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: '#ff0054',
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 14,
+        backgroundColor: '#041738',
+        color: theme.palette.common.white,
+        borderColor: '#ff0054' 
     },
 }));
 
@@ -40,7 +43,7 @@ const UsersTable: FC = () => {
     const { users, removeUserfromList } = useUsers();
 
     const deleteUser =(id:string)=>{
-        console.log('delete user', id)
+
         removeUserfromList(id)
     }
 
@@ -67,7 +70,7 @@ const UsersTable: FC = () => {
                     <StyledTableCell align="right">{user.role}</StyledTableCell>
                     <StyledTableCell align="right">
                         <IconButton aria-label="delete" size="large" onClick={()=>deleteUser(user.idDB)}>
-                            <DeleteIcon fontSize="inherit" />
+                            <DeleteIcon fontSize="inherit" sx={{ color: '#ff0054' }} />
                         </IconButton>
                     </StyledTableCell>
                 </StyledTableRow>

@@ -7,13 +7,11 @@ import { Box, Card, Typography } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { Item } from "../../../types";
-import { ButtonToggle } from "../index"
 
 import './styles.scss'
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { processVideos } from "../../../redux/actions/videos";
-
 
 const useStyle = makeStyles({
     card:{ 
@@ -27,28 +25,26 @@ type Props={
     items:Item[], 
 }
 
-const CardList :FC<Props> = ({items}) =>{
+const CardListDetail :FC<Props> = ({items}) =>{
 
     const { push } = useHistory();
     const classes = useStyle();
     const dispatch = useDispatch();
 
-    const details = ( data:number )=>{
+    const details =( data:number )=>{
 
         push(`/details/${data}`);
-        dispatch(processVideos(data))
+        dispatch(processVideos(data));
     }
 
     return (
         <>
             <Box sx={{
-                display: ['flex', 'flex', 'grid', 'grid'],
-                flexWrap: 'wrap', 
-                columnGap: 4,
-                gridTemplateColumns: ['repeat 1','repeat(2, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)'],
-                width: "100%",
-                justifyContent: 'center',
-            }}>
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent:'center',
+                width: "80%",
+                }}>
                 {items?.map(item =>{
 
                     const srcImage = (!item.poster_path)? `${image}`: `http://image.tmdb.org/t/p/w500${item.poster_path}`
@@ -56,11 +52,11 @@ const CardList :FC<Props> = ({items}) =>{
                     return(
                         <div id={`${item.id}`}>
                             <Card className={classes.card} sx={{ 
-                                    width: ['80vw', '40vw', '30vw', '17rem' ],
-                                    height: ['38rem', '40rem', '40rem', '33rem'], 
+                                    width: ['12rem','10rem'],
+                                    height: ['22rem','20rem'],
                                     padding: '1rem',
                                     borderRadius: '1rem', 
-                                    marginBottom:'1.5rem'
+                                    margin:'1rem'
                                 }} 
                                 variant="outlined"
                                 >
@@ -78,7 +74,7 @@ const CardList :FC<Props> = ({items}) =>{
                                         {item.vote_average}
                                     </Typography>
                                     <StarRating stars={item.vote_average} />
-                                    <ButtonToggle item={item}/>
+                                
                                 </div>
                                 
                             </Card>
@@ -90,4 +86,4 @@ const CardList :FC<Props> = ({items}) =>{
     )
 }
 
-export { CardList }
+export { CardListDetail }

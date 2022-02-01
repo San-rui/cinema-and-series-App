@@ -1,3 +1,11 @@
+@import '../../scss/variables.scss';
+
 .movies{
     width: 80%;
+    min-height: 80vh;
+
+    .text-no-items{
+        color:$color-white;
+        font-size: 3rem;
+    }
 }

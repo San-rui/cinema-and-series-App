@@ -1,12 +1,14 @@
 import { FC } from "react";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import './styles.scss'
 
 const Footer:FC = ()=>{
     return (
         <footer className="footer">
-            soy el footer
-            
+            <p>Made with</p>
+            <FavoriteBorderIcon sx={{color: '#10002b'}}/>
+            <p>by San</p>
         </footer>
     )
 }

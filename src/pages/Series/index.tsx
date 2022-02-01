@@ -10,12 +10,12 @@ const Series :FC= () =>{
 
     const { dataMovieFb } = useMovies()
 
-    const movies = dataMovieFb.items.filter(item=> item.media_type==='tv')
+    const series = dataMovieFb.items.filter(item=> item.media_type==='tv')
 
     return(
         <Layout>
             <div className="series">
-                <CardList items={movies}/>
+                {series.length>0? <CardList items={series}/> : <p className="text-no-items">There are no items added yet...</p>}
             </div>
         </Layout>
     )
