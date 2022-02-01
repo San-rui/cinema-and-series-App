@@ -17,7 +17,19 @@
         }
 
         .text-overview{
-            margin: 3rem 0;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .container-text{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            .trailers{
+                margin: 1rem;
+            }
+
         }
 
         .container-videos{

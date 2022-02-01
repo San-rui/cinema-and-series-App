@@ -1,3 +1,26 @@
-.details{
+@import '../../scss/variables.scss';
+
+.details-page{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .go-back{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 2rem;
+        border: none;
+        width: 10rem;
+        background-color: $tertiary;
+        color: $color-white;
+        cursor: pointer;
+    }
+
+    .go-back:hover{
+        background-color: $secondary;
+    }
 }
