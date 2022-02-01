@@ -15,7 +15,7 @@ const Movies :FC= () =>{
     return(
         <Layout>
             <div className="movie">
-                <CardList items={movies}/>
+                {movies.length>0? <CardList items={movies}/>: <p className="text-no-items">There are no items added yet...</p>}
             </div>
         </Layout>
     )

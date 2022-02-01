@@ -1,0 +1,20 @@
+@import '../../../scss/variables.scss';
+
+.button-detail{
+    height:100%;
+    cursor: pointer;
+    background-color: transparent;
+    border:none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color:$color-white;
+
+    .image{
+        border-radius: 0.2rem;
+        width: 100%;
+    
+    }
+
+}
