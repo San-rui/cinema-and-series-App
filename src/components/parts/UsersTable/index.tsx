@@ -2,8 +2,6 @@ import { FC } from "react";
 import { useUsers } from "../../../hooks";
 import { User } from "../../../types";
 
-
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -24,7 +22,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fontSize: 14,
         backgroundColor: '#041738',
         color: theme.palette.common.white,
-        borderColor: '#ff0054' 
+        borderColor: '#ff0054',
     },
 }));
 

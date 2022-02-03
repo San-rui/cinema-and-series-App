@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { Layout } from "../../components/layout";
 import { UsersTable } from "../../components/parts";
+import { WithAuth } from "../../hoc";
 
 import './styles.scss'
 
@@ -16,4 +17,4 @@ const UsersPage :FC= () =>{
     )
 }
 
-export default UsersPage
+export default WithAuth(UsersPage) 

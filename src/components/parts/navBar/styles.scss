@@ -36,3 +36,79 @@
         background-color: transparent;
     }
 }
+
+.nav-responsive{
+    border-bottom: 1px solid $secondary;
+    display: flex;
+    align-items: center;
+    
+
+    .button-menu{
+        border-radius: 1rem;
+        background-color: transparent;
+        border:none;
+        width: 2rem;
+        height: 2rem;
+        
+        margin-left: 0.5rem;
+
+        .menu{
+            border:none;
+            color: $secondary;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .menu:hover{
+            color: $background-color;
+        }
+    }
+
+    
+
+}
+
+.nav-responsive-options{
+    background-color: $primary;
+    flex-direction:column;
+    border-bottom: 1px solid $secondary;
+    padding: 1rem;
+
+    .link-nav{
+        text-decoration: none;
+        background-color: $primary;
+        color: $color-white;
+    }
+
+    .link-nav:hover{
+        color: $secondary;
+    }
+
+    .nav-button{
+        background-color: $primary;
+        border:none;
+        color: $color-white;
+        text-align: left;
+        font-size: 1rem;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    .nav-button:hover{
+        color: $secondary;
+    }
+
+    .close-button{
+        border: none;
+        background-color: transparent;
+        color: $secondary;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-end;
+
+    }
+
+    .close-button:hover{
+        color: $background-color;
+    }
+
+}

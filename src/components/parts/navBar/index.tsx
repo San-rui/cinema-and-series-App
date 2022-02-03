@@ -35,21 +35,21 @@ const NavBar :FC = () =>{
                     >Exit</button>
                 </Box>
             </Box>
-            <Box sx={{ display: [display, display,'none','none'], backgroundColor: '#edf2f4', color: 'white', height: '3rem', marginBottom: '2rem'}}>
-                <button onClick={() => {setOpen('flex'); setDisplay('none')}}>
-                    <MenuIcon />
+            <Box className="nav-responsive" sx={{ display: [display, display,'none','none'], color: 'white', height: '3rem', marginBottom: '2rem'}}>
+                <button onClick={() => {setOpen('flex'); setDisplay('none')}} className="button-menu">
+                    <MenuIcon className="menu"/>
                 </button>
             </Box>
-            <Box sx={{ display:[open, open, 'none', 'none'], flexDirection:'column', backgroundColor: 'white', zIndex: 20, top:0,}}>
-                <button onClick={() => {setOpen('none'); ; setDisplay('flex')}}>
+            <Box  className="nav-responsive-options" sx={{ display:[open, open, 'none', 'none'], zIndex: 20, top:0,}}>
+                <button className="close-button" onClick={() => {setOpen('none'); ; setDisplay('flex')}}>
                     <CloseIcon />
                 </button>
-                <Box sx={{ display:[open, open, 'none', 'none'], flexDirection:'column', backgroundColor: 'white', zIndex: 20, top:0,}}>
-                    <Link to='/'>Home</Link>
-                    <Link to='/movies'>Movies</Link>
-                    <Link to='/series'>Series</Link>
+                <Box  sx={{ display:[open, open, 'none', 'none'], flexDirection:'column', backgroundColor: 'white', zIndex: 20, top:0,}}>
+                    <Link to='/' className='link-nav'>Home</Link>
+                    <Link to='/movies' className='link-nav'>Movies</Link>
+                    <Link to='/series' className='link-nav'>Series</Link>
                     {(role==='admin')&& <Link to='/admin?page=1' className='link-nav'>Admin</Link>}
-                    {(role==='admin')&&<Link to='/users'>Users</Link>}
+                    {(role==='admin')&&<Link to='/users'className='link-nav'>Users</Link>}
                     <button className='nav-button'
                         onClick={logout}
                     >Exit</button>
