@@ -7,12 +7,58 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter:blur(12px);
     border-radius: 1rem;
-    margin-right: 2rem;
     color: white;
+    
+    .form{
 
-    .container-input{
+        margin: 1rem;
         display: flex;
         flex-direction: column;
-        margin-bottom: 1rem;
+
+        
+    
+        .title-sign-up{
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+    
+        .container-input{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+    
+            .input{
+                height: 2rem;
+                padding: 1rem;
+                border:none;
+                border-radius: 0.3rem;
+                margin-top: 0.5rem;
+            }
+        }
+
+        .container-button{
+            width: 100%;
+            display: flex;
+            justify-content:center;
+            
+            .button{
+                width: 50%;
+                height: 3rem;
+                border-radius: 2rem;
+                background-color: $secondary;
+                border: none;
+                justify-self: center;
+                color:$color-white;
+                font-size: 1rem;
+            }
+
+            .button:hover{
+                background-color:$background-color;
+            }
+
+        }
+
     }
+    
 }
