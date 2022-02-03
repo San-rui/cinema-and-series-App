@@ -66,7 +66,10 @@ const LoginForm: FC = () => {
                     <div className='link-container'>
                         <Link to='sign-up' className='link-login-form'>Register</Link>
                     </div>
-                    
+                    <div>
+                        <p>Admin: san@gmail.com</p>
+                        <p>Password: asd12345</p>
+                    </div>
                 </form>
                 
             </Box>
