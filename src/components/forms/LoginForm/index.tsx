@@ -61,10 +61,10 @@ const LoginForm: FC = () => {
                         {errors.password?.message}
                     </div>
                     <div className='button-container'>
-                        <button type="submit">Send</button>
+                        <button className="button" type="submit">Send</button>
                     </div>
                     <div className='link-container'>
-                        <Link to='/singUp' className='link-login-form'>Register</Link>
+                        <Link to='sign-up' className='link-login-form'>Register</Link>
                     </div>
                     
                 </form>

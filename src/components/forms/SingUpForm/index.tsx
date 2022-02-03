@@ -8,12 +8,7 @@ import './styles.scss'
 import { User } from "../../../types";
 import { useUsers } from "../../../hooks";
 
-type Props = {
-    id?: string,
-    className?: string
-};
-
-const SingupForm: FC <Props> = ({ id, className}) => {
+const SingupForm: FC = () => {
 
     const { addUser } =useUsers() ;
 
@@ -32,13 +27,14 @@ const SingupForm: FC <Props> = ({ id, className}) => {
 
     return(
         <div className="singup-form">
-                <form action="" onSubmit={handleSubmit(onSubmit)}>
-                    <div className='title-login-form'>
-                        <h2>Login</h2>
+                <form className="form" action="" onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <h2 className="title-sign-up">Sign Up</h2>
                     </div>
                     <div className='container-input'>
                         <label htmlFor="name">Name</label>
-                        <input 
+                        <input
+                            className='input'
                             id="name" 
                             type="text" 
                             placeholder="Enter your name"
@@ -49,6 +45,7 @@ const SingupForm: FC <Props> = ({ id, className}) => {
                     <div className='container-input'>
                         <label htmlFor="lastname">Last name</label>
                         <input 
+                            className='input'
                             id="lastname" 
                             type="text" 
                             placeholder="Enter your last name"
@@ -59,6 +56,7 @@ const SingupForm: FC <Props> = ({ id, className}) => {
                     <div className='container-input'>
                         <label htmlFor="birthday">Birthday</label>
                         <input 
+                            className='input'
                             id="birthday" 
                             type="date" 
                             placeholder="Enter your email"
@@ -69,6 +67,7 @@ const SingupForm: FC <Props> = ({ id, className}) => {
                     <div className='container-input'>
                         <label htmlFor="email">Email</label>
                         <input 
+                            className='input'
                             id="email" 
                             type="text" 
                             placeholder="Enter your email"
@@ -79,6 +78,7 @@ const SingupForm: FC <Props> = ({ id, className}) => {
                     <div className='container-input'>
                         <label htmlFor="password">Password</label>
                         <input 
+                            className='input'
                             id="password" 
                             type="password" 
                             placeholder="Enter your password"
@@ -86,7 +86,9 @@ const SingupForm: FC <Props> = ({ id, className}) => {
                         />
                         {errors.password?.message}
                     </div>
-                    <button type="submit">Send</button>
+                    <div className='container-button'> 
+                        <button className="button" type="submit">Send</button>
+                    </div>
                 </form>
                 
             </div>

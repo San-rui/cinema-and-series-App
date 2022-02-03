@@ -4,7 +4,7 @@ import { store } from './redux/store';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-import SingUp from './pages/SingUp';
+import SignUp from './pages/SignUp';
 import UsersPage from './pages/UsersPage';
 import Admin from './pages/Admin';
 import Movies from './pages/Movies';
@@ -23,7 +23,7 @@ function App() {
           <Route path="/movies" component={Movies} />
           <Route path="/series" component={Series} />
           <Route path="/login" component={Login} />
-          <Route path="/singup" component={SingUp} />
+          <Route path="/sign-up" component={SignUp} />
           <Route path="/users" component={UsersPage} />
           <Route path="/" component={Home} />
         </Switch>

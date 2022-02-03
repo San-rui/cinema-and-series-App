@@ -1,11 +1,13 @@
 
 import { FC } from "react";
 import { Layout } from "../../components/layout";
-import { SingupForm } from "../../components/forms"
+import { SingupForm } from "../../components/forms";
+
 
 import './styles.scss'
+import { WithAuth } from "../../hoc";
 
-const SingUp :FC = () =>{
+const SignUp :FC = () =>{
 
     return(
         <Layout hidenHeader>
@@ -17,4 +19,4 @@ const SingUp :FC = () =>{
     
 }
 
-export default SingUp
+export default WithAuth(SignUp) 
