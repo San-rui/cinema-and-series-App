@@ -4,7 +4,6 @@ import { Link} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
 import './styles.scss'
