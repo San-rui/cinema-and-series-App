@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/tp-final-cinema.git/static/css/main.3fd1b1b1.chunk.css",
-    "main.js": "/tp-final-cinema.git/static/js/main.1270aea2.chunk.js",
-    "main.js.map": "/tp-final-cinema.git/static/js/main.1270aea2.chunk.js.map",
-    "runtime-main.js": "/tp-final-cinema.git/static/js/runtime-main.9ce5aed4.js",
-    "runtime-main.js.map": "/tp-final-cinema.git/static/js/runtime-main.9ce5aed4.js.map",
-    "static/js/2.c809f567.chunk.js": "/tp-final-cinema.git/static/js/2.c809f567.chunk.js",
-    "static/js/2.c809f567.chunk.js.map": "/tp-final-cinema.git/static/js/2.c809f567.chunk.js.map",
-    "index.html": "/tp-final-cinema.git/index.html",
-    "static/css/main.3fd1b1b1.chunk.css.map": "/tp-final-cinema.git/static/css/main.3fd1b1b1.chunk.css.map",
-    "static/js/2.c809f567.chunk.js.LICENSE.txt": "/tp-final-cinema.git/static/js/2.c809f567.chunk.js.LICENSE.txt",
-    "static/media/benjamin-button.66c02af1.jpeg": "/tp-final-cinema.git/static/media/benjamin-button.66c02af1.jpeg",
-    "static/media/bigBang.d4263752.jpeg": "/tp-final-cinema.git/static/media/bigBang.d4263752.jpeg",
-    "static/media/image.23fc8bfe.png": "/tp-final-cinema.git/static/media/image.23fc8bfe.png",
-    "static/media/styles.scss": "/tp-final-cinema.git/static/media/it.c0e354f1.jpeg",
-    "static/media/serie1.7281d56f.jpeg": "/tp-final-cinema.git/static/media/serie1.7281d56f.jpeg"
+    "main.css": "/tp-final-cinema/static/css/main.3bfb5d29.chunk.css",
+    "main.js": "/tp-final-cinema/static/js/main.1270aea2.chunk.js",
+    "main.js.map": "/tp-final-cinema/static/js/main.1270aea2.chunk.js.map",
+    "runtime-main.js": "/tp-final-cinema/static/js/runtime-main.e5f7daa0.js",
+    "runtime-main.js.map": "/tp-final-cinema/static/js/runtime-main.e5f7daa0.js.map",
+    "static/js/2.c809f567.chunk.js": "/tp-final-cinema/static/js/2.c809f567.chunk.js",
+    "static/js/2.c809f567.chunk.js.map": "/tp-final-cinema/static/js/2.c809f567.chunk.js.map",
+    "index.html": "/tp-final-cinema/index.html",
+    "static/css/main.3bfb5d29.chunk.css.map": "/tp-final-cinema/static/css/main.3bfb5d29.chunk.css.map",
+    "static/js/2.c809f567.chunk.js.LICENSE.txt": "/tp-final-cinema/static/js/2.c809f567.chunk.js.LICENSE.txt",
+    "static/media/benjamin-button.66c02af1.jpeg": "/tp-final-cinema/static/media/benjamin-button.66c02af1.jpeg",
+    "static/media/bigBang.d4263752.jpeg": "/tp-final-cinema/static/media/bigBang.d4263752.jpeg",
+    "static/media/image.23fc8bfe.png": "/tp-final-cinema/static/media/image.23fc8bfe.png",
+    "static/media/styles.scss": "/tp-final-cinema/static/media/it.c0e354f1.jpeg",
+    "static/media/serie1.7281d56f.jpeg": "/tp-final-cinema/static/media/serie1.7281d56f.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.9ce5aed4.js",
+    "static/js/runtime-main.e5f7daa0.js",
     "static/js/2.c809f567.chunk.js",
-    "static/css/main.3fd1b1b1.chunk.css",
+    "static/css/main.3bfb5d29.chunk.css",
     "static/js/main.1270aea2.chunk.js"
   ]
 }
