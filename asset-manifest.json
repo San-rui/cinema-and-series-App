@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/tp-final-cinema/static/css/main.cdcf533c.chunk.css",
-    "main.js": "/tp-final-cinema/static/js/main.16ac32a2.chunk.js",
-    "main.js.map": "/tp-final-cinema/static/js/main.16ac32a2.chunk.js.map",
-    "runtime-main.js": "/tp-final-cinema/static/js/runtime-main.e5f7daa0.js",
-    "runtime-main.js.map": "/tp-final-cinema/static/js/runtime-main.e5f7daa0.js.map",
-    "static/js/2.11617455.chunk.js": "/tp-final-cinema/static/js/2.11617455.chunk.js",
-    "static/js/2.11617455.chunk.js.map": "/tp-final-cinema/static/js/2.11617455.chunk.js.map",
-    "index.html": "/tp-final-cinema/index.html",
-    "static/css/main.cdcf533c.chunk.css.map": "/tp-final-cinema/static/css/main.cdcf533c.chunk.css.map",
-    "static/js/2.11617455.chunk.js.LICENSE.txt": "/tp-final-cinema/static/js/2.11617455.chunk.js.LICENSE.txt",
-    "static/media/benjamin-button.66c02af1.jpeg": "/tp-final-cinema/static/media/benjamin-button.66c02af1.jpeg",
-    "static/media/bigBang.d4263752.jpeg": "/tp-final-cinema/static/media/bigBang.d4263752.jpeg",
-    "static/media/cine.b00e8d4b.png": "/tp-final-cinema/static/media/cine.b00e8d4b.png",
-    "static/media/image.23fc8bfe.png": "/tp-final-cinema/static/media/image.23fc8bfe.png",
-    "static/media/styles.scss": "/tp-final-cinema/static/media/it.c0e354f1.jpeg",
-    "static/media/serie1.7281d56f.jpeg": "/tp-final-cinema/static/media/serie1.7281d56f.jpeg"
+    "main.css": "/cinema-and-series-App/static/css/main.6a0c4e7d.chunk.css",
+    "main.js": "/cinema-and-series-App/static/js/main.16ac32a2.chunk.js",
+    "main.js.map": "/cinema-and-series-App/static/js/main.16ac32a2.chunk.js.map",
+    "runtime-main.js": "/cinema-and-series-App/static/js/runtime-main.55250e3b.js",
+    "runtime-main.js.map": "/cinema-and-series-App/static/js/runtime-main.55250e3b.js.map",
+    "static/js/2.11617455.chunk.js": "/cinema-and-series-App/static/js/2.11617455.chunk.js",
+    "static/js/2.11617455.chunk.js.map": "/cinema-and-series-App/static/js/2.11617455.chunk.js.map",
+    "index.html": "/cinema-and-series-App/index.html",
+    "static/css/main.6a0c4e7d.chunk.css.map": "/cinema-and-series-App/static/css/main.6a0c4e7d.chunk.css.map",
+    "static/js/2.11617455.chunk.js.LICENSE.txt": "/cinema-and-series-App/static/js/2.11617455.chunk.js.LICENSE.txt",
+    "static/media/benjamin-button.66c02af1.jpeg": "/cinema-and-series-App/static/media/benjamin-button.66c02af1.jpeg",
+    "static/media/bigBang.d4263752.jpeg": "/cinema-and-series-App/static/media/bigBang.d4263752.jpeg",
+    "static/media/cine.b00e8d4b.png": "/cinema-and-series-App/static/media/cine.b00e8d4b.png",
+    "static/media/image.23fc8bfe.png": "/cinema-and-series-App/static/media/image.23fc8bfe.png",
+    "static/media/styles.scss": "/cinema-and-series-App/static/media/it.c0e354f1.jpeg",
+    "static/media/serie1.7281d56f.jpeg": "/cinema-and-series-App/static/media/serie1.7281d56f.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e5f7daa0.js",
+    "static/js/runtime-main.55250e3b.js",
     "static/js/2.11617455.chunk.js",
-    "static/css/main.cdcf533c.chunk.css",
+    "static/css/main.6a0c4e7d.chunk.css",
     "static/js/main.16ac32a2.chunk.js"
   ]
 }
