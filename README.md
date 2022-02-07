@@ -1,10 +1,10 @@
 # Cinema & Series App
 
-React Js version: 17.0.2
-Node version: 15.14
-API: https://www.themoviedb.org/
-Material UI
-Firebase
+o React Js version: 17.0.2
+o Node version: 15.14
+o API: https://www.themoviedb.org/
+o Material UI
+o Firebase
 
 En este proyecto he realizado una aplicación con dos tipos de perfiles:
 
