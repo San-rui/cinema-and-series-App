@@ -5,14 +5,28 @@
     font-size: 1rem;
     border-bottom: 1px solid $secondary;
 
-    .name-app{
-        color: $secondary;
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 600;
-        font-size: 2rem;
-        margin-left: 1rem;
-        letter-spacing: 1rem;
+    .cointainer-logo{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+
+        .cinema-logo{
+            width: 4rem;
+            margin-left: 1rem;
+        }
+    
+        .name-app{
+            color: $secondary;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 2rem;
+            margin-left: 1rem;
+            letter-spacing: 1rem;
+        }
+
     }
+
+    
 
     .link-nav {
         text-decoration: none;
@@ -33,15 +47,36 @@
     border-bottom: 1px solid $secondary;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    .cointainer-logo{
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+
+        .cinema-logo{
+            width: 2rem;
+            margin-left: 1rem;
+        }
+    
+        .name-app{
+            color: $secondary;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            letter-spacing: 1rem;
+        }
+
+    }
     
 
     .button-menu{
         border-radius: 1rem;
         background-color: transparent;
         border:none;
-        width: 2rem;
+        width: 10%;
         height: 2rem;
-        
         margin-left: 0.5rem;
 
         .menu{
