@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import cine from '../../../assets/images/cine.png';
 
 import './styles.scss'
 import { useAuth } from "../../../hooks";
@@ -20,9 +21,12 @@ const NavBar :FC = () =>{
     return (
         <>
             <Box className="navBar" sx={{ display: ['none','none','flex','flex'], justifyContent:'space-between', marginBottom: '2rem'}}>
-                <Typography className='name-app'>
-                    CINEMA
-                </Typography>
+                <div className="cointainer-logo">
+                    <img src={cine} alt="cine" className="cinema-logo"/>
+                    <Typography className='name-app'>
+                        CINEMA
+                    </Typography>
+                </div>
                 <Box>
                     <Link to='/' className='link-nav'>Home</Link>
                     <Link to='/movies' className='link-nav'>Movies</Link>
@@ -38,6 +42,12 @@ const NavBar :FC = () =>{
                 <button onClick={() => {setOpen('flex'); setDisplay('none')}} className="button-menu">
                     <MenuIcon className="menu"/>
                 </button>
+                <div className="cointainer-logo">
+                    <img src={cine} alt="cine" className="cinema-logo"/>
+                    <Typography className='name-app'>
+                        CINEMA
+                    </Typography>
+                </div>
             </Box>
             <Box  className="nav-responsive-options" sx={{ display:[open, open, 'none', 'none'], zIndex: 20, top:0,}}>
                 <button className="close-button" onClick={() => {setOpen('none'); ; setDisplay('flex')}}>
