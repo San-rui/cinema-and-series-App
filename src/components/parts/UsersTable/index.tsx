@@ -4,6 +4,7 @@ import { User } from "../../../types";
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
+import { Box } from "@mui/material";
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -12,6 +13,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+import './styles.scss'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -46,36 +49,39 @@ const UsersTable: FC = () => {
     }
 
     return (
-        <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-                <TableRow>
-                    <StyledTableCell>Name</StyledTableCell>
-                    <StyledTableCell align="right">Apellido</StyledTableCell>
-                    <StyledTableCell align="right">	Email</StyledTableCell>
-                    <StyledTableCell align="right">Fecha de nacimiento</StyledTableCell>
-                    <StyledTableCell align="right">Role</StyledTableCell>
-                    <StyledTableCell align="right"></StyledTableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-            {users?.items?.map((user: User) => (
-                <StyledTableRow key={user.name}>
-                    <StyledTableCell component="th" scope="row">{user.name}</StyledTableCell>
-                    <StyledTableCell align="right">{user.lastName}</StyledTableCell>
-                    <StyledTableCell align="right">{user.email}</StyledTableCell>
-                    <StyledTableCell align="right">{user.birthday}</StyledTableCell>
-                    <StyledTableCell align="right">{user.role}</StyledTableCell>
-                    <StyledTableCell align="right">
-                        <IconButton aria-label="delete" size="large" onClick={()=>deleteUser(user.idDB)}>
-                            <DeleteIcon fontSize="inherit" sx={{ color: '#ff0054' }} />
-                        </IconButton>
-                    </StyledTableCell>
-                </StyledTableRow>
-            ))}
-            </TableBody>
-        </Table>
-        </TableContainer>
+        <Box className="container">
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Name</StyledTableCell>
+                            <StyledTableCell align="right">Apellido</StyledTableCell>
+                            <StyledTableCell align="right">	Email</StyledTableCell>
+                            <StyledTableCell align="right">Fecha de nacimiento</StyledTableCell>
+                            <StyledTableCell align="right">Role</StyledTableCell>
+                            <StyledTableCell align="right"></StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {users?.items?.map((user: User) => (
+                        <StyledTableRow key={user.name}>
+                            <StyledTableCell component="th" scope="row">{user.name}</StyledTableCell>
+                            <StyledTableCell align="right">{user.lastName}</StyledTableCell>
+                            <StyledTableCell align="right">{user.email}</StyledTableCell>
+                            <StyledTableCell align="right">{user.birthday}</StyledTableCell>
+                            <StyledTableCell align="right">{user.role}</StyledTableCell>
+                            <StyledTableCell align="right">
+                                <IconButton aria-label="delete" size="large" onClick={()=>deleteUser(user.idDB)}>
+                                    <DeleteIcon fontSize="inherit" sx={{ color: '#ff0054' }} />
+                                </IconButton>
+                            </StyledTableCell>
+                        </StyledTableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Box>
+        
     );
 };
 
