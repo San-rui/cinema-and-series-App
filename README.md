@@ -1,24 +1,44 @@
 # Cinema & Series App
 
-o React Js version: 17.0.2
-o Node version: 15.14
-o API: https://www.themoviedb.org/
-o Material UI
-o Firebase
+•	Recursos: 
+
+
+React Js version: 17.0.2
+
+Node version: 15.14
+
+API: https://www.themoviedb.org/
+
+Material UI
+
+Firebase
+
+
+# Perfiles: 
 
 En este proyecto he realizado una aplicación con dos tipos de perfiles:
 
+
 •	Admin
+
     o Inciar sesión con "role admin".
+    
     o Acceso a todas las paginas del sitio.
+    
     o Seleccionar items (peliculas o series) de la api para agregar a la plataforma (DB) de reproducción.
+    
     o Eliminar items (peliculas o series) de la plataforma (DB).
+    
     o Eliminar usuarios.
 
 •	User
+
     o Iniciar sesión con "role user".
+    
     o Acceso solo a películas, series y detalle.
+    
     o Los items (películas y series) pueden ser marcadas como vistos.
+    
 
 # Deploy: https://san-rui.github.io/cinema-and-series-App/
 
